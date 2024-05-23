@@ -9,38 +9,44 @@ parts:
       en: Theory of the firm
       it: Teoria dell'impresa
     chapters:
-      - folder: 3
+      - folder: 7
         title:
           en: Title
           it: Tecnologia e costi dell'impresa
         sections:
           - title:
               en: Title
-              it: Funzione di produzione, prodotto medio e prodotto marginale
+              it: Produzione e produttività
           - title:
               en: Title
               it: Costi dell'impresa
-      - folder: 5
+      - folder: 8
         title:
           en: Title
           it: Massimizzazione del profitto e offerta
         sections:
           - title:
               en: Title
-              it: Ricavi dell'impresa
+              it: Profitto dell'impresa
+          - title:
+              en: Title
+              it: Ricavo marginale e costo marginale
           - title:
               en: Title
               it: Offerta di breve periodo delle imprese price-taker
           - title:
               en: Title
               it: Offerta di lungo periodo delle imprese price-taker
+          - title:
+              en: Title
+              it: Surplus del produttore
 
   - folder: II
     title: 
       en: Theory of the firm
       it: Mercato del lavoro
     chapters:
-      - folder: 3
+      - folder: W1
         title:
           en: Title
           it: Offerta di lavoro
@@ -54,7 +60,7 @@ parts:
           - title:
               en: Title
               it: Domanda di lavoro
-      - folder: 4
+      - folder: W2
         title:
           en: Title
           it: Domanda di lavoro
@@ -68,7 +74,7 @@ parts:
           - title:
               en: Title
               it: Sez 4.3
-      - folder: 5
+      - folder: W3
         title:
           en: Title
           it: Potere di mercato
