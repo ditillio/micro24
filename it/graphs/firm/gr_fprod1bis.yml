@@ -9,13 +9,15 @@ params:
 
 calcs:
   x: (params.k)*((params.l)^(params.alpha))
+  ap: (calcs.x) / (params.l)
+  cazz: (params.alpha) - 1
 
 #aspectRatio: 0.7
 
 layout:
-  OneGraphPlusSidebar:
+  TwoVerticalGraphsPlusSidebar:
 
-    graph: 
+    topGraph: 
       xAxis:
         max: 6
         ticks: 5
@@ -56,12 +58,50 @@ layout:
               position: c
             strokeWidth: 1.7
 
+    bottomGraph: 
+      xAxis:
+        max: 6
+        ticks: 5
+      yAxis:
+        max: 40
+        ticks: 0
+
+      objects:
+
+        - Label:
+                coordinates: [6, 0]
+                text: "` \\\\text{Lavoro (gg)} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, 40]
+                text: "` \\\\text{Output / gg}  `"
+                xPixelOffset: -6
+
+# points
+        - Point:
+            coordinates: [params.l, calcs.ap]
+            droplines: {vertical: params.l.toFixed(1), horizontal: calcs.ap.toFixed(1)}
+            color: Brown
+            r: 5
+            drag:
+            - horizontal: l
+
+# AP_L
+
+        - Curve:
+            fn: (params.k)*((x)^((params.alpha)-1))
+            color: Brown
+            label:
+              text: "` AP_L = ${params.k} L^{${calcs.cazz.toFixed(1)}} `"
+              x: 6
+              position: c
+            strokeWidth: 1.7
+
     sidebar:
       controls:
-      - title: Funzione di produzione (Esempio 1)
-        description: Muovere i primi due cursori per specificare i parametri della funzione di produzione.
-                     Muovere poi il terzo cursore per vedere come, in base alla funzione specificata, la quantità di output varia al variare
-                     della quantità di lavoro.
+      - title: Funzione di produzione e prodotto medio (Esempio 1)
         sliders:
         - param: alpha
           label: \alpha
@@ -69,8 +109,7 @@ layout:
           label: k
         - param: l
           label: L
-        # divs:
-        # - html: "` I parametri $\\\\alpha$ e $\\\\beta$ sono indici della produttività del lavoro.
-        #         Aumentando $\\\\alpha$ o $\\\\beta$ (o entrambi), la quantità di output ($X$) a 
-        #         parità di lavoro impiegato ($L$). `"
-        #   show: params.alpha > 0
+        divs:
+        - html: "` Quando l'impresa impiega $L=${params.l.toFixed(1)}$ unità di lavoro, la quantità di output ed il prodotto medio
+                    sono rispettivamente $Q=${calcs.x.toFixed(1)}$ e $AP_L=${calcs.ap.toFixed(1)}$. `"
+          show: params.alpha > 0

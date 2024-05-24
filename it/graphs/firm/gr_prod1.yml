@@ -50,7 +50,7 @@ layout:
 
         - Label:
               coordinates: [3.3, 0]
-              text: "` \\\\text{Lavoro (giornate)} `"
+              text: "` \\\\text{Lavoro (gg)} `"
               yPixelOffset: 0
               position: l
         - Label:
