@@ -40,7 +40,6 @@ parts:
           - title:
               en: Title
               it: Surplus del produttore
-
   - folder: II
     title: 
       en: Theory of the firm
