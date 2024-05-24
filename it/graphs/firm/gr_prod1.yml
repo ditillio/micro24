@@ -139,9 +139,9 @@ layout:
 
 
 # efficient frontier half labor units
-        - Point: {coordinates: [0.5,calcs.t11], color: Blue, droplines: {horizontal: calcs.t11, vertical: }, show: params.showEFF == true}
-        - Point: {coordinates: [1.5,calcs.t21], color: Blue, droplines: {horizontal: calcs.t21, vertical: }, show: params.showEFF == true}
-        - Point: {coordinates: [2.5,calcs.t31], color: Blue, droplines: {horizontal: calcs.t31, vertical: }, show: params.showEFF == true}
+        - Point: {coordinates: [0.5,calcs.t11], color: Blue, droplines: {horizontal: calcs.t11, vertical: }, show: params.d !== 0 && params.showEFF == true}
+        - Point: {coordinates: [1.5,calcs.t21], color: Blue, droplines: {horizontal: calcs.t21, vertical: }, show: params.d !== 0 && params.showEFF == true}
+        - Point: {coordinates: [2.5,calcs.t31], color: Blue, droplines: {horizontal: calcs.t31, vertical: }, show: params.d !== 0 && params.showEFF == true}
 
 
 # production possibilities divisible labor
