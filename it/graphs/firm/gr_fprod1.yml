@@ -4,7 +4,7 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: alpha, value: 0.5, min: 0.3, max: 0.7, round: 0.1}
-- {name: k, value: 10, min: 5, max: 20}
+- {name: k, value: 80, min: 60, max: 100, round: 10}
 - {name: l, value: 4, min: 0, max: 6, round: 0.1}
 
 calcs:
@@ -20,7 +20,7 @@ layout:
         max: 6
         ticks: 5
       yAxis:
-        max: 40
+        max: 300
         ticks: 0
 
       objects:
@@ -32,7 +32,7 @@ layout:
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 40]
+                coordinates: [0, 300]
                 text: "` \\\\text{Output}  `"
                 xPixelOffset: -6
 
@@ -59,14 +59,14 @@ layout:
     sidebar:
       controls:
       - title: Funzione di produzione (Esempio 1)
-        description: Muovere i primi due cursori per specificare i parametri della funzione di produzione.
-                     Muovere poi il terzo cursore per vedere come, in base alla funzione specificata, la quantità di output varia al variare
+        description: Muovere i primi due cursori per modificare i parametri della funzione di produzione.
+                     Muovere il terzo cursore per vedere come, dati i parametri, la quantità di output varia al variare
                      della quantità di lavoro.
         sliders:
         - param: alpha
           label: \alpha
         - param: k
-          label: k
+          label: A
         - param: l
           label: L
         # divs:

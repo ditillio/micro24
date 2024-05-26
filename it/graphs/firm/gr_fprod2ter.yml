@@ -81,31 +81,31 @@ layout:
         - Point:
             coordinates: [params.l, calcs.ap]
             droplines: {vertical: params.l.toFixed(1), horizontal: calcs.ap.toFixed(0)}
-            color: Brown
+            color: Red
             r: 5
             drag:
             - horizontal: l
 
-# AP_L
+# AP_L = MP_L
 
         - Curve:
             fn: (params.a)
-            color: Brown
+            color: Red
             label:
-              text: "` AP_L = ${params.a} `"
+              text: "` AP_L = MP_L = ${params.a} `"
               x: 6
               position: c
             strokeWidth: 1.7
 
     sidebar:
       controls:
-      - title: Funzione di produzione e prodotto medio (Esempio 1, caso lineare)
+      - title: Funzione di produzione, prodotto medio e prodotto marginale (Esempio 1, caso lineare)
         sliders:
         - param: a
           label: A
         - param: l
           label: L
         divs:
-        - html: "` Quando l'impresa impiega $L=${params.l.toFixed(1)}$ unità di lavoro, la quantità di output ed il prodotto medio
-                    sono rispettivamente $Q=${calcs.x.toFixed(1)}$ e $AP_L=${calcs.ap.toFixed(1)}$. `"
+        - html: "` Quando l'impresa impiega $L=${params.l.toFixed(1)}$ unità di lavoro, la quantità di output, il prodotto medio 
+        ed il prodotto marginale sono $Q=${calcs.x.toFixed(1)}$ e $AP_L=MP_L=${calcs.ap.toFixed(1)}$. `"
           show: params.a > 0

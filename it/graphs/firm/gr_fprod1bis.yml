@@ -4,8 +4,8 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: alpha, value: 0.5, min: 0.3, max: 0.7, round: 0.1}
-- {name: k, value: 10, min: 5, max: 20}
-- {name: l, value: 4, min: 0, max: 6, round: 0.1}
+- {name: k, value: 80, min: 60, max: 100, round: 10}
+- {name: l, value: 4, min: 0.1, max: 6, round: 0.1}
 
 calcs:
   x: (params.k)*((params.l)^(params.alpha))
@@ -22,7 +22,7 @@ layout:
         max: 6
         ticks: 5
       yAxis:
-        max: 40
+        max: 300
         ticks: 0
 
       objects:
@@ -34,7 +34,7 @@ layout:
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 40]
+                coordinates: [0, 300]
                 text: "` \\\\text{Output}  `"
                 xPixelOffset: -6
 
@@ -63,7 +63,7 @@ layout:
         max: 6
         ticks: 5
       yAxis:
-        max: 40
+        max: 200
         ticks: 0
 
       objects:
@@ -75,7 +75,7 @@ layout:
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 40]
+                coordinates: [0, 200]
                 text: "` \\\\text{Output / gg}  `"
                 xPixelOffset: -6
 
@@ -91,7 +91,7 @@ layout:
 # AP_L
 
         - Curve:
-            fn: (params.k)*((x)^((params.alpha)-1))
+            fn: ((params.k)*((x)^(params.alpha)))/(x)
             color: Brown
             label:
               text: "` AP_L = ${params.k} L^{${calcs.cazz.toFixed(1)}} `"
@@ -106,7 +106,7 @@ layout:
         - param: alpha
           label: \alpha
         - param: k
-          label: k
+          label: A
         - param: l
           label: L
         divs:
