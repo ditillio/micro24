@@ -270,38 +270,7 @@ layout:
         divs:
         - html: "`  `"
         - html: "`  `"
-        - html: "`  `"
-        - html: "` La funzione di produzione è $Q=F(L)=80\\\\sqrt{L}$. `"
-        - html: "` La quantità minima di lavoro che l'impresa può
-                  utilizzare è una giornata, quindi $\\\\Delta L=1$.
-                  Se l'impresa impiega una giornata, il prodotto marginale è quindi
-                  $$ \\\\frac{80-0}{1}=80, $$
-                  se ne impiega due è
-                  $$ \\\\frac{113-80}{1}=33, $$
-                  se ne impiega tre è
-                  $$ \\\\frac{138-113}{1}=25, $$
-                  ecc.
-                    `"
           show: (params.d == 0)
-        - html: "` La quantità minima di lavoro che l'impresa può
-                  utilizzare è mezza giornata, quindi $\\\\Delta L=1/2$.
-                  Se l'impresa impiega una mezza giornata, il prodotto marginale è quindi
-                  $$ \\\\frac{56-0}{1/2}=112, $$
-                  se ne impiega due è
-                  $$ \\\\frac{80-56}{1/2}=48, $$
-                  se ne impiega tre è
-                  $$ \\\\frac{98-80}{1/2}=36, $$
-                  ecc.
-                    `"
-          show: (params.d == 1)
-        - html: "` Il lavoro è divisibile, cioè l'impresa può impiegare anche frazioni molto piccole di ora. Abbiamo dunque $\\\\Delta L \\\\to 0$
-                  e quindi la funzione di prodotto marginale è la derivata della funzione di produzione:
-                  $$ MP_L = \\\\frac{dQ}{dL} = F'(L) = 40L^{-0.5}. $$
-                    `"
-          show: (params.d == 2)
-        - html: "` Spostare il punto blu o quello rosso per vedere come variano output e prodotto marginale al 
-                      variare della quantità di lavoro impiegata dall'impresa. `"
-          show: (params.d == 2)
 
     # explanation:
     #   divs:

@@ -254,7 +254,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Dai costi ai costi unitari
+      - title: Costi e costi unitari dell'impresa
         sliders:
         - param: a
           label: A
