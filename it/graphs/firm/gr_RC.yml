@@ -38,37 +38,144 @@ calcs:
   l: ((1)/80^2)*(params.x)^2
   vc: ((params.w)/80^2)*(params.x)^2
   tc: (params.fc) + ((params.w)/80^2)*(params.x)^2
-  afc: (params.fc)/(params.x)
-  avc: ((params.w)/80^2)*(params.x)
-  atc: (params.fc)/(params.x) + ((params.w)/80^2)*(params.x)
 
-  afc11: (params.fc)/(calcs.t11)
-  afc12: (params.fc)/(calcs.b1)
-  afc21: (params.fc)/(calcs.t21)
-  afc22: (params.fc)/(calcs.t22)
-  afc31: (params.fc)/(calcs.t31)
-  afc32: (params.fc)/(calcs.t32)
-
-  avc11: (params.w) * 0.5 / (calcs.t11)
-  avc12: (params.w) * 1 / (calcs.t12)
-  avc21: (params.w) * 1.5 / (calcs.t21)
-  avc22: (params.w) * 2 / (calcs.t22)
-  avc31: (params.w) * 2.5 / (calcs.t31)
-  avc32: (params.w) * 3 / (calcs.t32)
-
-  atc11: (calcs.afc11) + (calcs.avc11)
-  atc12: (calcs.afc12) + (calcs.avc12)
-  atc21: (calcs.afc21) + (calcs.avc21)
-  atc22: (calcs.afc22) + (calcs.avc22)
-  atc31: (calcs.afc31) + (calcs.avc31)
-  atc32: (calcs.afc32) + (calcs.avc32)
 
 aspectRatio: 0.6
 
 layout:
   TwoVerticalGraphsPlusSidebar:
 
-    topGraph:
+    topGraph: 
+      yAxis:
+        max: (params.fc) + (params.w)*3 + 20
+        ticks: none
+      xAxis:
+        min: -1
+        max: 160
+        ticks: none
+
+      objects:
+
+        - Label:
+              coordinates: [0, (params.fc) + (params.w)*3 + 20]
+              text: "` \\\\text{Euro} `"
+              xPixelOffset: 0
+        - Label:
+              coordinates: [160, 0]
+              text: "` \\\\text{Output (kg)}  `"
+              xPixelOffset: 0
+
+# VC whole labor units
+        - Point: {coordinates: [-1,0], color: Darkorange, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1,(params.w)*1], color: Darkorange, droplines: {vertical: calcs.b1, horizontal: (params.w)*1}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2,(params.w)*2], color: Darkorange, droplines: {vertical: calcs.b1+calcs.b2, horizontal: (params.w)*2}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.w)*3], color: Darkorange, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: (params.w)*3}, show: params.d < 2 && params.showEFF == true, r: 5}
+
+# TC whole labor units
+        - Point: {coordinates: [0,(params.fc)], color: Brown, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1,(params.w)*1+(params.fc)], color: Brown, droplines: {vertical: calcs.b1, horizontal: (params.w)*1+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2,(params.w)*2+(params.fc)], color: Brown, droplines: {vertical: calcs.b1+calcs.b2, horizontal: (params.w)*2+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.w)*3+(params.fc)], color: Brown, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: (params.w)*3+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
+
+# VC half labor units
+        - Point: {coordinates: [calcs.t11,(params.w)*0.5], color: Darkorange, droplines: {vertical: calcs.t11, horizontal: (params.w)*0.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t21,(params.w)*1.5], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t31,(params.w)*2.5], color: Darkorange, droplines: {vertical: calcs.t31, horizontal: (params.w)*2.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+
+# TC half labor units
+        - Point: {coordinates: [calcs.t11,(params.w)*0.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t11, horizontal: (params.w)*0.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t21,(params.w)*1.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t31,(params.w)*2.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t31, horizontal: (params.w)*2.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
+
+# R whole labor units
+        - Point: {coordinates: [1,0], color: Green, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1,200], color: Green, droplines: {vertical: calcs.b1, horizontal: 200}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2,250], color: Green, droplines: {vertical: calcs.b1+calcs.b2, horizontal: 250}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,280], color: Green, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: 280}, show: params.d < 2 && params.showEFF == true, r: 5}
+
+# R half labor units
+        - Point: {coordinates: [calcs.t11,150], color: Green, droplines: {vertical: calcs.t11, horizontal: 150}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t21,(params.w)*1.5], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t31,(params.w)*2.5], color: Darkorange, droplines: {vertical: calcs.t31, horizontal: (params.w)*2.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+
+
+
+# VC divisible labor
+        - Curve:
+            fn: ((params.w)/80^2)*(x)^2
+            color: Darkorange
+            strokeWidth: 2
+            max: 150
+            label:
+              text: "` VC = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              x: 140
+              position: l
+              bgcolor: none
+            show: params.d == 2 && params.showEFF == true
+
+# TC divisible labor
+        - Curve:
+            fn: (params.fc) + ((params.w)/80^2)*(x)^2
+            color: Brown
+            strokeWidth: 2
+            label:
+              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              x: 130
+              position: l
+              bgcolor: none
+            show: params.d == 2 && params.showEFF == true
+
+
+# R divisible labor
+        - Curve:
+            fn: (x) * ( 180 - (x) ) / 30
+            color: Green
+            strokeWidth: 2
+            label:
+              text: "` R `"
+              x: 130
+              position: l
+              bgcolor: none
+            show: params.d == 2 && params.showEFF == true
+
+
+# points
+        - Point:
+            coordinates: [params.x, calcs.vc]
+            droplines: {horizontal: calcs.vc.toFixed(2), vertical: params.x.toFixed(2)}
+            color: Darkorange
+            r: 5
+            drag:
+            - horizontal: x
+            show: params.d == 2
+
+        - Point:
+            coordinates: [params.x, calcs.tc]
+            droplines: {horizontal: calcs.tc.toFixed(2), vertical: params.x.toFixed(2)}
+            color: Brown
+            r: 5
+            drag:
+            - horizontal: x
+            show: params.d == 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    bottomGraph: 
       yAxis:
         max: (params.fc) + (params.w)*3 + 20
         ticks: none
@@ -89,12 +196,12 @@ layout:
 
 # FC whole labor units
         - Point: {coordinates: [0,(params.fc)], color: Gray, opacity: 0.7, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.b1,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1, horizontal: (params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.b1+calcs.b2,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1+calcs.b2, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1+calcs.b2, horizontal: (params.w)*2+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: (params.w)*3+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
 
 # FC half labor units
-        - Point: {coordinates: [calcs.t11,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t11, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t11,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t11, horizontal: (params.w)*0.5}, show: params.d == 1 && params.showEFF == true, r: 5}
         - Point: {coordinates: [calcs.t21,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t21, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
         - Point: {coordinates: [calcs.t31,(params.fc)], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t31, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
 
@@ -102,23 +209,39 @@ layout:
 # VC whole labor units
         - Point: {coordinates: [0,0], color: Darkorange, show: params.d < 2 && params.showEFF == true, r: 5}
         - Point: {coordinates: [calcs.b1,(params.w)*1], color: Darkorange, droplines: {vertical: calcs.b1, horizontal: (params.w)*1}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.b1+calcs.b2,(params.w)*2], color: Darkorange, droplines: {vertical: calcs.b1+calcs.b2, horizontal: (params.w)*2}, show: params.d < 2 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.b1+calcs.b2,(params.w)*2], color: Darkorange, droplines: {vertical: calcs.b1+calcs.b2, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*2-3], color: Darkorange, droplines: {vertical: , horizontal: (params.w)*2}, show: params.d < 2 && params.showEFF == true, r: 0}
         - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.w)*3], color: Darkorange, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: (params.w)*3}, show: params.d < 2 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*3-3], color: Darkorange, droplines: {vertical: , horizontal: (params.w)*3}, show: params.d == 1 && params.showEFF == true, r: 0}
 
 # TC whole labor units
         - Point: {coordinates: [0,(params.fc)], color: Brown, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.b1,(params.w)*1+(params.fc)], color: Brown, droplines: {vertical: calcs.b1, horizontal: (params.w)*1+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.fc)+3], color: Brown, droplines: {horizontal: params.fc}, show: params.d < 2 && params.showEFF == true, r: 0}
+        - Point: {coordinates: [calcs.b1,(params.w)*1+(params.fc)], color: Brown, droplines: {vertical: calcs.b1, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*1+(params.fc)+3], color: Brown, droplines: {vertical: , horizontal: (params.w)*1+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 0}
         - Point: {coordinates: [calcs.b1+calcs.b2,(params.w)*2+(params.fc)], color: Brown, droplines: {vertical: calcs.b1+calcs.b2, horizontal: (params.w)*2+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
         - Point: {coordinates: [calcs.b1+calcs.b2+calcs.b3,(params.w)*3+(params.fc)], color: Brown, droplines: {vertical: calcs.b1+calcs.b2+calcs.b3, horizontal: (params.w)*3+(params.fc)}, show: params.d < 2 && params.showEFF == true, r: 5}
 
 # VC half labor units
         - Point: {coordinates: [calcs.t11,(params.w)*0.5], color: Darkorange, droplines: {vertical: calcs.t11, horizontal: (params.w)*0.5}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t21,(params.w)*1.5], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t31,(params.w)*2.5], color: Darkorange, droplines: {vertical: calcs.t31, horizontal: (params.w)*2.5}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t21,(params.w)*1.5], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*1.5-3], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5}, show: params.d == 1 && params.showEFF == true, r: 0}
+        - Point: {coordinates: [calcs.t31,(params.w)*2.5], color: Darkorange, droplines: {vertical: calcs.t31, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*2.5-3], color: Darkorange, droplines: {vertical: , horizontal: (params.w)*2.5}, show: params.d == 1 && params.showEFF == true, r: 0}
 
 # TC half labor units
-        - Point: {coordinates: [calcs.t11,(params.w)*0.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t11, horizontal: (params.w)*0.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t21,(params.w)*1.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t21, horizontal: (params.w)*1.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
+        - Point: {coordinates: [calcs.t11,(params.w)*0.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t11, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*0.5+(params.fc)+3], color: Brown, droplines: {vertical: , horizontal: (params.w)*0.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 0}
+        - Point: {coordinates: [calcs.t21,(params.w)*1.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t21, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
+        # shadow point
+        - Point: {coordinates: [0,(params.w)*1.5+(params.fc)+3], color: Brown, droplines: {vertical: , horizontal: (params.w)*1.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 0}
         - Point: {coordinates: [calcs.t31,(params.w)*2.5+(params.fc)], color: Brown, droplines: {vertical: calcs.t31, horizontal: (params.w)*2.5+(params.fc)}, show: params.d == 1 && params.showEFF == true, r: 5}
 
 # FC divisible labor
@@ -173,8 +296,6 @@ layout:
             droplines: {horizontal: params.fc.toFixed(2), vertical: params.x.toFixed(2)}
             color: Gray
             r: 5
-            drag:
-            - horizontal: x
             show: params.d == 2
 
         - Point:
@@ -182,8 +303,6 @@ layout:
             droplines: {horizontal: calcs.vc.toFixed(2), vertical: params.x.toFixed(2)}
             color: Darkorange
             r: 5
-            drag:
-            - horizontal: x
             show: params.d == 2
 
         - Point:
@@ -191,138 +310,6 @@ layout:
             droplines: {horizontal: calcs.tc.toFixed(2), vertical: params.x.toFixed(2)}
             color: Brown
             r: 5
-            drag:
-            - horizontal: x
-            show: params.d == 2
-
-
-
-
-
-    bottomGraph: 
-      yAxis:
-        max: 2.5
-        ticks: none
-      xAxis:
-        max: 160
-        ticks: none
-
-      objects:
-
-        - Label:
-              coordinates: [0, 2.5]
-              text: "` \\\\text{Euro/kg} `"
-              xPixelOffset: 0
-        - Label:
-              coordinates: [160, 0]
-              text: "` \\\\text{Output (kg)}  `"
-              xPixelOffset: 0
-
-# AFC whole labor units
-        - Point: {coordinates: [calcs.t12,calcs.afc12], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t12, horizontal: calcs.afc12.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t22,calcs.afc22], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t22, horizontal: calcs.afc22.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t32,calcs.afc32], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t32, horizontal: calcs.afc32.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-
-# AFC half labor units
-        - Point: {coordinates: [calcs.t11,calcs.afc11], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t11, horizontal: calcs.afc11.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t21,calcs.afc21], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t21, horizontal: calcs.afc21.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t31,calcs.afc31], color: Gray, opacity: 0.7, droplines: {vertical: calcs.t31, horizontal: calcs.afc31.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-
-# AVC whole labor units
-        - Point: {coordinates: [calcs.t12,calcs.avc12], color: Darkorange, droplines: {vertical: calcs.t12, horizontal: calcs.avc12.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t22,calcs.avc22], color: Darkorange, droplines: {vertical: calcs.t22, horizontal: calcs.avc22.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t32,calcs.avc32], color: Darkorange, droplines: {vertical: calcs.t32, horizontal: calcs.avc32.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-
-# AVC half labor units
-        - Point: {coordinates: [calcs.t11,calcs.avc11], color: Darkorange, droplines: {vertical: calcs.t11, horizontal: calcs.avc11.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t21,calcs.avc21], color: Darkorange, droplines: {vertical: calcs.t21, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t31,calcs.avc31], color: Darkorange, droplines: {vertical: calcs.t31, horizontal: calcs.avc31.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-
-
-# ATC whole labor units
-        - Point: {coordinates: [calcs.t12,calcs.atc12], color: Brown, droplines: {vertical: calcs.t12, horizontal: }, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t22,calcs.atc22], color: Brown, droplines: {vertical: calcs.t22, horizontal: calcs.atc22.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t32,calcs.atc32], color: Brown, droplines: {vertical: calcs.t32, horizontal: calcs.atc32.toFixed(2)}, show: params.d < 2 && params.showEFF == true, r: 5}
-
-# ATC half labor units
-        - Point: {coordinates: [calcs.t11,calcs.atc11], color: Brown, droplines: {vertical: calcs.t11, horizontal: calcs.atc11.toFixed(2)}, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t21,calcs.atc21], color: Brown, droplines: {vertical: calcs.t21, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
-        - Point: {coordinates: [calcs.t31,calcs.atc31], color: Brown, droplines: {vertical: calcs.t31, horizontal: }, show: params.d == 1 && params.showEFF == true, r: 5}
-
-
-
-
-
-
-# AFC divisible labor
-        - Curve:
-            fn: (params.fc)/(x)
-            color: Gray
-            strokeWidth: 2
-            label:
-              text: "` AFC = \\\\dfrac{${params.fc}}{Q}`"
-              x: 150
-              position: bl
-            show: params.d == 2 && params.showEFF == true
-
-# AVC divisible labor
-        - Curve:
-            fn: ((params.w)/80^2)*(x)
-            color: Darkorange
-            strokeWidth: 2
-            max: 150
-            label:
-              text: "` AVC = \\\\dfrac{ ${params.w} }{80^2} Q `"
-              x: 140
-              position: l
-            show: params.d == 2 && params.showEFF == true
-
-# ATC divisible labor
-        - Curve:
-            fn: (params.fc)/(x) + ((params.w)/80^2)*(x)
-            color: Brown
-            strokeWidth: 2
-            label:
-              text: "` ATC = \\\\dfrac{${params.fc}}{Q} + \\\\dfrac{ ${params.w} }{80^2} Q `"
-              x: 140
-              position: bl
-            show: params.d == 2 && params.showEFF == true
-
-# # tangent
-#         - Line:
-#             point: [calcs.dem,(12*(calcs.dem))-2*(calcs.dem)^2]
-#             slope: params.p
-#             color: Black
-#             min: calcs.dem-1
-#             max: calcs.dem+1
-#             strokeWidth: 1
-#             show: params.d == 2
-
-        - Point:
-            coordinates: [params.x, calcs.afc]
-            droplines: {horizontal: calcs.afc.toFixed(2), vertical: params.x.toFixed(2)}
-            color: Gray
-            r: 5
-            drag:
-            - horizontal: x
-            show: params.d == 2
-
-        - Point:
-            coordinates: [params.x, calcs.avc]
-            droplines: {horizontal: calcs.avc.toFixed(2), vertical: params.x.toFixed(2)}
-            color: Darkorange
-            r: 5
-            drag:
-            - horizontal: x
-            show: params.d == 2
-
-        - Point:
-            coordinates: [params.x, calcs.atc]
-            droplines: {horizontal: calcs.atc.toFixed(2), vertical: params.x.toFixed(2)}
-            color: Brown
-            r: 5
-            drag:
-            - horizontal: x
             show: params.d == 2
 
 
@@ -331,7 +318,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Dai costi ai costi medi
+      - title: Ricavi, costi e profitto dell'impresa
         # sliders:
         # - param: p
         #   label: P
