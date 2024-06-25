@@ -7,7 +7,6 @@ params:
 - {name: a, value: 80, min: 60, max: 100, round: 5}
 - {name: w, value: 64, min: 40, max: 80, round: 1}
 - {name: fc, value: 100, min: 0, max: 300, round: 5}
-- {name: maxcost, value: 600}
 
 calcs:
   l: ((params.x)/(params.a))^2
@@ -35,7 +34,10 @@ calcs:
   avcopt: (calcs.vcopt) / (calcs.xopt)
   atcopt: (calcs.tcopt) / (calcs.xopt)
 
-aspectRatio: 0.8
+  cazz: min(params.p,calcs.atcopt)
+
+
+aspectRatio: 0.7
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -115,6 +117,30 @@ layout:
         - Point: {coordinates: [calcs.xopt, calcs.tcopt], color: Brown, r: 4, droplines: {horizontal: calcs.tcopt.toFixed(2)}}
         - Point: {coordinates: [calcs.xopt, calcs.vcopt], color: Orange, r: 4, droplines: {horizontal: calcs.vcopt.toFixed(2)}}
 
+# tangent to TC
+        - Line:
+            point: [calcs.xopt,calcs.tcopt]
+            slope: params.p
+            color: Black
+            lineStyle: dashed
+            strokeWidth: 0.8
+            show: params.p > 0
+
+# tangent to VC
+        - Line:
+            point: [calcs.xopt,calcs.vcopt]
+            slope: params.p
+            color: Black
+            lineStyle: dashed
+            strokeWidth: 0.8
+
+
+
+
+
+
+
+
 
 
     bottomGraph: 
@@ -122,8 +148,7 @@ layout:
         max: 210
         ticks: none
       yAxis:
-        max: 350
-        min: -250
+        max: 5
         ticks: none
 
       objects:
@@ -135,82 +160,111 @@ layout:
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 350  ]
-                text: "` \\\\text{euro}  `"
-                xPixelOffset: -3
+                coordinates: [0, 5]
+                text: "` \\\\text{euro/kg}  `"
+                xPixelOffset: 0
 
-# accounting profit
+# price line
+        - Line:
+            yIntercept: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: "` MR = P `"
+              x: 210
+              position: b
+            drag:
+              - vertical: p
+
+# ATC curve
 
         - Curve:
-            fn: params.p * (x) - params.w * ((x)/(params.a))^2 - (params.fc)
-            color: Darkgreen
+            fn: params.w * ((x)/(params.a))^2 / (x) + (params.fc) / (x)
+            color: Brown
             label:
-              text: "` R - TC `"
-              x: min((params.a)*sqrt((params.maxcost)/(params.w)),190)
-              position: bl
+              text: ATC
+              x: 210
+              position: l
+              bgcolor: none
             strokeWidth: 1.7
 
-# economic profit
+# AVC curve
 
         - Curve:
-            fn: params.p * (x) - params.w * ((x)/(params.a))^2
-            color: Forestgreen
+            fn: params.w * ((x)/(params.a))^2 / (x)
+            color: Orange
             label:
-              text: "` R - VC `"
-              x: min((params.a)*sqrt((params.maxcost)/(params.w)),190)
-              position: bl
+              text: AVC
+              x: 210
+              position: tl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# MC curve
+
+        - Curve:
+            fn: 2 * params.w * (x) / ( (params.a)^2 )
+            color: Red
+            label:
+              text: MC
+              x: 210
+              position: l
+              bgcolor: none
             strokeWidth: 1.7
 
 # dropline optimal x
         - Segment:
-            a: [calcs.xopt,1000]
-            b: [calcs.xopt,calcs.aux]
+            a: [calcs.xopt,0]
+            b: [calcs.xopt,1000]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+
+# droplines ATC and AVC
+        - Segment:
+            a: [0,calcs.atcopt]
+            b: [calcs.xopt,calcs.atcopt]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+        - Segment:
+            a: [0,calcs.avcopt]
+            b: [calcs.xopt,calcs.avcopt]
             color: Black
             lineStyle: dotted
             strokeWidth: 1
 
 # profit / loss
-        - Segment: {a: [calcs.xopt,calcs.accprofit], b: [calcs.xopt,0], color: Blue, strokeWidth: 5, show: calcs.tropt > calcs.tcopt}
-        - Segment: {a: [calcs.xopt,calcs.accprofit], b: [calcs.xopt,0], color: Red, strokeWidth: 5, show: calcs.tropt < calcs.tcopt}
-        - Segment: {a: [calcs.xopt,calcs.econprofit], b: [calcs.xopt,calcs.aux2], color: Darkgrey, strokeWidth: 5, show: calcs.tropt > calcs.tcopt}
-        - Segment: {a: [calcs.xopt,calcs.econprofit], b: [calcs.xopt,calcs.aux2], color: LawnGreen, strokeWidth: 5, show: calcs.tropt < calcs.tcopt}
+        - Area: {fn1: params.p, fn2: calcs.atcopt, fill: Blue, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0 }
+        - Area: {fn1: params.p, fn2: calcs.atcopt, fill: Red, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0 }
+        - Area: {fn1: calcs.cazz, fn2: calcs.avcopt, fill: Gray, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0}
+        - Area: {fn1: calcs.cazz, fn2: calcs.avcopt, fill: GreenYellow, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0}
 
-# fc, tr, tc, vc points and labels
-        - Point: {coordinates: [calcs.xopt, calcs.econprofit], color: Forestgreen, r: 4, droplines: {horizontal: calcs.econprofit.toFixed(2)}}
-        - Point: {coordinates: [calcs.xopt, calcs.accprofit], color: Darkgreen, r: 4, droplines: {horizontal: calcs.accprofit.toFixed(2)}}
-
-
+# points and labels
+        - Point: {coordinates: [calcs.xopt, params.p], color: Green, r: 0, droplines: {horizontal: params.p.toFixed(2)}}
+        - Point: {coordinates: [calcs.xopt, params.p], color: Red, r: 4, droplines: {vertical: calcs.xopt.toFixed(1)}}
+        - Point: {coordinates: [calcs.xopt, calcs.atcopt], color: Brown, r: 4, droplines: {horizontal: calcs.atcopt.toFixed(2)}}
+        - Point: {coordinates: [calcs.xopt, calcs.avcopt], color: Orange, r: 4, droplines: {horizontal: calcs.avcopt.toFixed(2)}}
 
     sidebar:
       controls:
-      - title: Scelta ottima di un'impresa price-taker nel breve periodo
+      - title: Massimizzazione del profitto
         sliders:
-        - param: fc
-          label: FC
         - param: p
           label: P
         divs:
         - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
-                  unità. Il massimo profitto (lunghezza del segmento blu) è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
+                  unità. Il massimo profitto (lunghezza del segmento blu nel grafico sopra, area blu nel grafico sotto) è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit > 0)
         - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
-                  unità. Il massimo profitto (negativo della lunghezza del segmento rosso) 
+                  unità. Il massimo profitto (negativo della lunghezza del segmento rosso nel grafico di sopra,
+                  o negativo dell'area rossa nel grafico di sotto) 
                   è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit < 0)
         - html: "` L'impresa non può fare di meglio. Per esempio, non producendo affatto i ricavi sarebbero
                   pari a zero e i costi sarebbero pari al costo fisso, quindi il profitto sarebbe minore:
                   $$0-${params.fc}=-${params.fc}<${calcs.accprofit.toFixed(2)}$$
                   Producendo una quantità positiva, invece, l'impresa
-                  riesce almeno a coprire una parte (segmento verde) dei costi fissi.`"
+                  riesce almeno a coprire una parte (segmento verde nel grafico di sopra, 
+                  o area verde nel grafico di sotto) dei costi fissi.`"
           show: (calcs.accprofit < 0)
-
-    explanation:
-      divs:
-        - html: "` Nel breve periodo, il costo fisso è irrecuperabile e va quindi ignorato.
-        La scelta ottima di breve periodo è infatti <i><b>indipendente dal valore del costo 
-                  fisso</b></i>.  `"
-          show: params.p > 0
-
-
-
-

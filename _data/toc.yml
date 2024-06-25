@@ -27,19 +27,10 @@ parts:
         sections:
           - title:
               en: Title
-              it: Profitto dell'impresa
+              it: Scelta ottima dell'impresa
           - title:
               en: Title
-              it: Ricavo marginale e costo marginale
-          - title:
-              en: Title
-              it: Offerta di breve periodo delle imprese price-taker
-          - title:
-              en: Title
-              it: Offerta di lungo periodo delle imprese price-taker
-          - title:
-              en: Title
-              it: Surplus del produttore
+              it: Offerta delle imprese price-taker
   - folder: II
     title: 
       en: Theory of the firm

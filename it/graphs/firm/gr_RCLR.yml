@@ -183,7 +183,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Scelta ottima di un'impresa price-taker nel breve periodo
+      - title: Scelta ottima di un'impresa price-taker nel lungo periodo
         sliders:
         - param: fc
           label: FC
@@ -193,22 +193,23 @@ layout:
         - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
                   unità. Il massimo profitto (lunghezza del segmento blu) è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit > 0)
-        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
-                  unità. Il massimo profitto (negativo della lunghezza del segmento rosso) 
-                  è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
+        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è 
+                  chiudere. Producendo una quantità positiva, il massimo profitto (negativo della lunghezza del segmento rosso) 
+                  sarebbe negativo: $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit < 0)
-        - html: "` L'impresa non può fare di meglio. Per esempio, non producendo affatto i ricavi sarebbero
-                  pari a zero e i costi sarebbero pari al costo fisso, quindi il profitto sarebbe minore:
-                  $$0-${params.fc}=-${params.fc}<${calcs.accprofit.toFixed(2)}$$
-                  Producendo una quantità positiva, invece, l'impresa
-                  riesce almeno a coprire una parte (segmento verde) dei costi fissi.`"
+        - html: "` Chiudendo, l'impresa ottiene zero ricavi ma ha zero costi
+                (il costo fisso è evitabile nel lungo periodo), quindi ottiene zero profitti. `"
           show: (calcs.accprofit < 0)
 
     explanation:
       divs:
-        - html: "` Nel breve periodo, il costo fisso è irrecuperabile e va quindi ignorato.
-        La scelta ottima di breve periodo è infatti <i><b>indipendente dal valore del costo 
-                  fisso</b></i>.  `"
+        - html: "` Nel lungo periodo, il costo fisso è un costo evitabile 
+                  e va quindi tenuto in considerazione per determinare la scelta
+                  ottima dell'impresa. La scelta ottima di lungo periodo è 
+                  uguale a quella di breve periodo solo se il costo fisso è
+                  sufficientemente basso (relativamente al prezzo di vendita 
+                  dell'output), in modo che $R(Q)\\\\geq TC(Q)$ per almeno
+                  un valore di $Q$.`"
           show: params.p > 0
 
 

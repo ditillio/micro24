@@ -4,15 +4,15 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 
-- {name: x, value: 120, min: 0, max: 200}
+- {name: x, value: 100, min: 0, max: 200}
 - {name: a, value: 3, min: 2, max: 4, round: 0.1}
-- {name: b, value: 0, min: 0, max: 0.02, round: 0.001}
+- {name: b, value: 0.01, min: 0, max: 0.02, round: 0.001}
 
 - {name: alpha, value: 0.5, min: 0.5, max: 1, round: 0.5}
 - {name: w, value: 64, min: 40, max: 80, round: 1}
 - {name: fc, value: 100, min: 0, max: 200, round: 5}
 - {name: maxcost, value: 950}
-- {name: maxprice, value: 5.5}
+- {name: maxprice, value: 4}
 
 calcs:
   p: (params.a) - (params.b)*(params.x)
@@ -44,22 +44,41 @@ layout:
                 position: l
 
         - Label:
-                coordinates: [0, 5.5]
+                coordinates: [0, params.maxprice]
                 text: "` \\\\text{euro / kg} `"
                 yPixelOffset: 0
                 xPixelOffset: 0
                 position: c
 
-# firm's demand function
-        - Curve:
-            fn: (params.a) - (params.b)*(x)
+# firm's demand function (b > 0)
+        - Line:
+            point: [0,3]
+            slope: -(params.b)
             color: Blue
             label:
-              text: "` P  `"
-              x: 180
+              text: "` P = ${params.a} - ${params.b.toFixed(3)} Q `"
+              x: min( 195 , params.a/params.b)
               position: bl
-            strokeWidth: 1.7
-            max: 205
+            drag: 
+              - directions: y
+                param: b
+                expression: "(params.a - drag.y)/drag.x"
+            show: params.b > 0
+
+# firm's demand function (b = 0)
+        - Line:
+            point: [0,3]
+            slope: -(params.b)
+            color: Blue
+            label:
+              text: "` P = ${params.a}  `"
+              x: 195
+              position: bl
+            drag: 
+              - directions: y
+                param: b
+                expression: "(params.a - drag.y)/drag.x"
+            show: params.b == 0
 
 # points
         - Point:
@@ -83,7 +102,7 @@ layout:
         max: 210
         ticks: none
       yAxis:
-        max: 650
+        max: 400
         ticks: none
 
       objects:
@@ -94,22 +113,34 @@ layout:
                 xPixelOffset: 0
 
         - Label:
-                coordinates: [0, 650]
+                coordinates: [0, 400]
                 text: "` \\\\text{euro} `"
                 yPixelOffset: 0
                 xPixelOffset: 0
                 position: c
 
-# firm's total revenue function
+# firm's total revenue function (b>0)
         - Curve:
             fn: ( (params.a) - (params.b)*(x) ) * (x)
             color: Green
             label:
-              text: "` R `"
+              text: "` R = ( ${params.a} - ${params.b.toFixed(3)} Q ) \\\\times Q `"
               x: 195
-              position: br
+              position: bl
             strokeWidth: 1.7
             max: 205
+
+# firm's total revenue function (b=0)
+        - Curve:
+            fn: ( (params.a) - (params.b)*(x) ) * (x)
+            color: Green
+            label:
+              text: "` R = ${params.a} Q `"
+              x: 120
+              position: bl
+            strokeWidth: 1.7
+            max: 205
+            show: params.b == 0
 
 # points
         - Point:
@@ -125,50 +156,21 @@ layout:
     sidebar:
       controls:
       - title: Dalla produzione ai costi
+        description: Spostare la curva di domanda inversa per il prodotto dell'impresa
+                      (retta blu nel grafico di sopra) per vedere come varia la funzione
+                      di ricavo totale. Spostare il cursore qui sotto (o muovere il punto blu nel grafico
+                      di sopra) per vedere come, al variare della quantità prodotta <i>Q</i>,
+                      variano il prezzo unitario (grafico di sopra) e il ricavo totale (grafico di sotto).  
         sliders:
-        - param: a
-          label: P
         - param: x
           label: Q
         divs:
+        - html: "`  `"
+        - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è orizzontale,
+                  la curva di ricavo totale è una retta. `"
+          show: params.b == 0
+        - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è decrescente,
+                  la curva di ricavo totale ha la forma di una U rovesciata. `"
+          show: params.b > 0
         - html: "` `"
         - html: "` `"
-        - html: "` `"
-        - html: "` `"
-        - html: "` `"
-        - html: "` La funzione di produzione è $Q=${params.a}L^{0.5}$. 
-                   La funzione di produzione inversa è quindi $L=(1/{${params.a}}^2)Q^2$. `"
-          show: params.alpha == 0.5
-        - html: "` Per produrre $ Q = ${params.x.toFixed(1)} $  sono perciò necessarie
-                   $$ L = (1/{${params.a}}^2) {${params.x.toFixed(1)}}^2 = ${calcs.l.toFixed(2)} $$
-                   giornate di lavoro. `"
-          show: params.alpha == 0.5
-        - html: "` La funzione di produzione è $ Q = ${params.a} L$.  
-                  La funzione di produzione inversa è quindi $L=(1/{${params.a}})Q$. `"
-          show: params.alpha == 1
-        - html: "` Per produrre $ Q = ${params.x.toFixed(1)} $  sono perciò necessarie
-                   $$ L = (1/{${params.a}}) {${params.x.toFixed(1)}} = ${calcs.l.toFixed(2)} $$
-                   giornate di lavoro. `"
-          show: params.alpha == 1
-        - html: "` `"
-        - html: "` `"
-        - html: "` `"
-        - html: "` Sapendo che il salario giornaliero è $W=${params.w}$, possiamo calcolare
-                   il costo variabile dell'impresa:
-                  $$ VC = \\\\frac{ ${params.w} }{ ${params.a} ^2 } ${params.x.toFixed(1)} ^2 
-                  = ${calcs.vc.toFixed(2)}. $$  `"
-          show: params.alpha == 0.5
-        - html: "` Sapendo che il salario giornaliero è $W=${params.w}$, possiamo calcolare
-                   il costo variabile dell'impresa:
-                  $$ VC = \\\\frac{ ${params.w} }{ ${params.a} } ${params.x.toFixed(1)} 
-                  = ${calcs.vc.toFixed(2)}. $$  `"
-          show: params.alpha == 1
-        - html: "` `"
-        - html: "` `"
-        - html: "` `"
-
-        - html: "` Infine, dato che il costo fisso è $FC = ${params.fc}$, possiamo
-                  calcolare il costo totale:
-                  $$ TC = ${params.fc} + ${calcs.vc.toFixed(2)} = ${calcs.tc.toFixed(2)}. $$
-                   `"
-          show: params.alpha > 0
