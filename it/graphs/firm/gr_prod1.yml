@@ -56,7 +56,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 160]
-              text: "` \\\\text{Output}  `"
+              text: "` \\\\text{Output (kg)}  `"
               xPixelOffset: -5
 
 # # price line
@@ -323,15 +323,6 @@ layout:
         - html: "`  `"
         - html: "`  `"
         - html: "`  `"
-        - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ ${calcs.cs0.toFixed(1)} $$`"
-          show: (params.d == 0 && params.showCS == true)
-        - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ ${calcs.cs1.toFixed(1)} $$`"
-          show: (params.d == 1 && params.showCS == true)
-        - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ ${calcs.cs2} $$`"
-          show: (params.d == 2 && params.showCS == true)
 
     explanation:
       divs:
@@ -341,25 +332,28 @@ layout:
                   di lavoro) oppure pari a 30 o 56 (sfruttando, ma non al massimo, la produttività del lavoratore). Assumendo un lavoratore per due
                   giornate (o due lavoratori per una giornata ciascuno), l'impresa può ottenere un output pari a 0, 30, 56, 80, 98 o 113, e così via. `"
           show: params.d == 0
-        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa sarà ovviamente interessata solo a quelle
+        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa è interessata solo a quelle
                    <b>efficienti</b>, ovvero quelle possibilità tali per cui, in corrispondenza di un dato livello di impiego di lavoro,
-                   la quantità di output è massima. Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
+                   la quantità di output è massima (quando parleremo di massimizzazione del profitto diventerà ovvio il perché). Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
                    efficienti (punti blu nel grafico). `"
           show: params.d == 0
         - html: "` I punti nel grafico rappresentano le possibilità produttive dell'impresa quando i lavoratori devono essere assunti in multipli di
                   mezza giornata. In questo caso, oltre alle possibilità produttive già disponibili quando i lavoratori devono essere assunti a giornata,
                   l'impresa ha a disposizione nuove possibilità, come per es. produrre 126 unità di output impiegando 2.5 giornate di lavoro. `"
           show: params.d == 1
-        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa sarà ovviamente interessata solo a quelle
+        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa è interessata solo a quelle
                    <b>efficienti</b>, ovvero quelle possibilità tali per cui, in corrispondenza di un dato livello di impiego di lavoro,
-                   la quantità di output è massima. Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
+                   la quantità di output è massima 
+                   (quando parleremo di massimizzazione del profitto diventerà ovvio il perché). Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
                    efficienti (punti blu nel grafico). `"
           show: params.d == 1
-        - html: "` Quando l'input è divisibile, cioè quando l'impresa può assumere il lavoro a frazioni di ora, oltre alle possibilità produttive già disponibili quando i lavoratori devono essere assunti 
+        - html: "` Quando l'input è infinitamente divisibile, cioè quando l'impresa può assumere
+                 il lavoro a frazioni anche piccolissime di ora, oltre alle possibilità produttive già disponibili quando i lavoratori devono essere assunti 
                   in multipli di mezza giornata, l'impresa ha a disposizione tante altre possibilità (qualunque punto nell'area grigia). `"
           show: params.d == 2
-        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa sarà ovviamente interessata solo a quelle
+        - html: "` Fra tutte le possibilità produttive a sua disposizione, l'impresa è interessata solo a quelle
                    <b>efficienti</b>, ovvero quelle tali per cui, in corrispondenza di un dato livello di impiego di lavoro,
-                   la quantità di output è massima. Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
+                   la quantità di output è massima
+                   (quando parleremo di massimizzazione del profitto diventerà ovvio il perché). Selezionare la casella di controllo <i>Evidenzia frontiera efficiente</i> per visualizzare le possibilità produttive
                    efficienti (in questo caso, l'intera curva blu). `"
           show: params.d == 2

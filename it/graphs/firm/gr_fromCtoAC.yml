@@ -15,7 +15,7 @@ params:
 - {name: b32, value: 24}
 
 - {name: w, value: 64}
-- {name: fc, value: 80}
+- {name: fc, value: 100}
 
 - {name: x, value: 80, min: 0, max: 140, round: 0.01}
 
@@ -140,7 +140,7 @@ layout:
             strokeWidth: 2
             max: 150
             label:
-              text: "` VC = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` VC(Q) = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 140
               position: l
               bgcolor: none
@@ -152,7 +152,7 @@ layout:
             color: Brown
             strokeWidth: 2
             label:
-              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` C(Q) = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 130
               position: l
               bgcolor: none
@@ -260,7 +260,7 @@ layout:
             color: Gray
             strokeWidth: 2
             label:
-              text: "` AFC = \\\\dfrac{${params.fc}}{Q}`"
+              text: "` AFC(Q) = \\\\dfrac{${params.fc}}{Q}`"
               x: 150
               position: bl
             show: params.d == 2 && params.showEFF == true
@@ -272,7 +272,7 @@ layout:
             strokeWidth: 2
             max: 150
             label:
-              text: "` AVC = \\\\dfrac{ ${params.w} }{80^2} Q `"
+              text: "` AVC(Q) = \\\\dfrac{ ${params.w} }{80^2} Q `"
               x: 140
               position: l
             show: params.d == 2 && params.showEFF == true
@@ -283,7 +283,7 @@ layout:
             color: Brown
             strokeWidth: 2
             label:
-              text: "` ATC = \\\\dfrac{${params.fc}}{Q} + \\\\dfrac{ ${params.w} }{80^2} Q `"
+              text: "` AC(Q) = \\\\dfrac{${params.fc}}{Q} + \\\\dfrac{ ${params.w} }{80^2} Q `"
               x: 140
               position: bl
             show: params.d == 2 && params.showEFF == true
@@ -332,6 +332,10 @@ layout:
     sidebar:
       controls:
       - title: Dai costi ai costi medi
+        description: Le funzioni di costo totale, costo variabile e costo fisso sono
+                    rappresentate rispettivamente in marrone, arancione e grigio nel grafico di sopra.
+                    Le funzioni di costo medio, costo variabile medio e costo fisso medio sono
+                    rappresentate rispettivamente in marrone, arancione e grigio nel grafico di sotto.
         # sliders:
         # - param: p
         #   label: P
@@ -347,7 +351,54 @@ layout:
         divs:
         - html: "`  `"
         - html: "`  `"
-          show: (params.d == 0)
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "` Come si vede nel grafico di sotto, la funzione di costo fisso medio è decrescente.
+                  Questo è abbastanza ovvio: maggiori sono le unità di output prodotte,
+                  minore è l'impatto del costo fisso su ciascuna unità prodotta. `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "` La funzione di costo variabile medio è invece crescente.
+                  Questo è dovuto al fatto che il prodotto medio del lavoro è decrescente. In effetti,
+                  dire che $AP_L$ è una funzione decrescente di $L$ (più lavoro l'impresa impiega,
+                  minore è l'output prodotto in media da ciascuna 
+                  unità di lavoro) è equivalente a dire che $AVC$ è una funzione crescente di $Q$
+                  (più output l'impresa produce, maggiore è la spesa in lavoro necessaria, in media, a produrre
+                  una unità di output). `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "` Infine, la funzione di costo medio ha la forma di una U, è cioè prima decrescente
+                e poi crescente in $Q$. 
+                Per spiegare questo, ricordiamo che il costo medio è 
+                la somma di costo fisso medio e costo variabile medio. 
+                  Per bassi livelli di output, il costo fisso medio decresce più velocemente
+                  di quanto cresca il costo variabile medio 
+                  (nell'esempio di questa figura, il costo variabile medio cresce 
+                  ad una velocità costante, essendo una linea retta), quind il costo medio 
+                  diminuisce all'aumentare della quantità prodotta. 
+                  Per alti livelli di output, il costo fisso medio decresce invece più lentamente,
+                   quindi il costo medio aumenta
+                  all'aumentare della quantità prodotta. 
+                   Torneremo sulla forma a U della funzione di costo medio alla fine del capitolo.
+                  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "` Trascinare uno dei punti in uno dei due grafici per vedere come
+        costi e costi medi variano al variare del livello di produzione. `"
+          show: (params.d == 2)
 
     # explanation:
     #   divs:

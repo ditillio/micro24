@@ -33,7 +33,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 600]
-                text: "` \\\\text{Output}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: -6
 
 # points
@@ -74,7 +74,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 200]
-                text: "` \\\\text{Output/gg}  `"
+                text: "` \\\\text{kg/gg}  `"
                 xPixelOffset: -6
 
 # points
@@ -99,7 +99,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Funzione di produzione, prodotto medio e prodotto marginale (Esempio 1, caso lineare)
+      - title: Funzione di produzione, prodotto medio e prodotto marginale (caso lineare)
         sliders:
         - param: a
           label: A

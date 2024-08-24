@@ -4,7 +4,7 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 
-- {name: x, value: 100, min: 0, max: 200}
+- {name: x, value: 100, min: 0, max: 290}
 - {name: a, value: 3, min: 2, max: 4, round: 0.1}
 - {name: b, value: 0.01, min: 0, max: 0.02, round: 0.001}
 
@@ -22,14 +22,14 @@ calcs:
   tc: params.w * calcs.l + params.fc
   aaa: (params.alpha)^(-1)
 
-aspectRatio: 1
+aspectRatio: 1.4
 
 layout:
   TwoVerticalGraphsPlusSidebar:
 
     topGraph: 
       xAxis:
-        max: 210
+        max: 300
         ticks: none
       yAxis:
         max: params.maxprice
@@ -38,7 +38,7 @@ layout:
       objects:
 
         - Label:
-                coordinates: [210, 0]
+                coordinates: [300, 0]
                 text: "` \\\\text{output (kg)}  `"
                 xPixelOffset: 0
                 position: l
@@ -99,7 +99,7 @@ layout:
 
     bottomGraph: 
       xAxis:
-        max: 210
+        max: 300
         ticks: none
       yAxis:
         max: 400
@@ -108,7 +108,7 @@ layout:
       objects:
 
         - Label:
-                coordinates: [210, 0]
+                coordinates: [300, 0]
                 text: "` \\\\text{output (kg)}  `"
                 xPixelOffset: 0
 
@@ -125,10 +125,10 @@ layout:
             color: Green
             label:
               text: "` R = ( ${params.a} - ${params.b.toFixed(3)} Q ) \\\\times Q `"
-              x: 195
+              x: 240
               position: bl
             strokeWidth: 1.7
-            max: 205
+            max: 295
 
 # firm's total revenue function (b=0)
         - Curve:
@@ -139,7 +139,7 @@ layout:
               x: 120
               position: bl
             strokeWidth: 1.7
-            max: 205
+            max: 295
             show: params.b == 0
 
 # points
@@ -155,11 +155,11 @@ layout:
 
     sidebar:
       controls:
-      - title: Dalla produzione ai costi
+      - title: Domanda per il prodotto e ricavo totale nel caso di un'impresa non-price-taker
         description: Spostare la curva di domanda inversa per il prodotto dell'impresa
                       (retta blu nel grafico di sopra) per vedere come varia la funzione
-                      di ricavo totale. Spostare il cursore qui sotto (o muovere il punto blu nel grafico
-                      di sopra) per vedere come, al variare della quantità prodotta <i>Q</i>,
+                      di ricavo totale (grafico di sotto). Spostare il cursore qui sotto (o muovere il punto blu nel grafico
+                      di sopra o il verde nel grafico di sotto) per vedere come, al variare della quantità prodotta <i>Q</i>,
                       variano il prezzo unitario (grafico di sopra) e il ricavo totale (grafico di sotto).  
         sliders:
         - param: x
@@ -169,7 +169,8 @@ layout:
         - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è orizzontale,
                   la curva di ricavo totale è una retta. `"
           show: params.b == 0
-        - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è decrescente,
+        - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è decrescente
+                (in questo esempio stiamo assumendo che sia $P(Q)=3-Q/100$),
                   la curva di ricavo totale ha la forma di una U rovesciata. `"
           show: params.b > 0
         - html: "` `"

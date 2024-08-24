@@ -15,7 +15,7 @@ params:
 - {name: b32, value: 24}
 
 - {name: w, value: 64}
-- {name: fc, value: 80}
+- {name: fc, value: 100}
 
 - {name: x, value: 80, min: 0, max: 140, round: 0.01}
 
@@ -40,7 +40,7 @@ calcs:
   tc: (params.fc) + ((params.w)/80^2)*(params.x)^2
 
 
-aspectRatio: 0.6
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -106,6 +106,13 @@ layout:
             drag:
             - horizontal: x
             show: params.d == 2
+
+
+
+
+
+
+
 
 
 
@@ -185,7 +192,7 @@ layout:
             strokeWidth: 2
             max: 150
             label:
-              text: "` VC = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` VC(Q) = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 140
               position: l
               bgcolor: none
@@ -199,7 +206,7 @@ layout:
             color: Brown
             strokeWidth: 2
             label:
-              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` C(Q) = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 130
               position: l
               bgcolor: none
@@ -245,6 +252,9 @@ layout:
     sidebar:
       controls:
       - title: Dalla produzione ai costi
+        description: La funzione di produzione inversa è rappresentata in blu nel grafico di sopra.
+                    Le funzioni di costo totale, costo variabile e costo fisso sono
+                    rappresentate rispettivamente in marrone, arancione e grigio nel grafico di sotto.
         # sliders:
         # - param: p
         #   label: P
@@ -260,7 +270,9 @@ layout:
         divs:
         - html: "`  `"
         - html: "`  `"
-          show: (params.d == 0)
+        - html: "` Trascinare uno dei punti in uno dei due grafici per vedere come
+        costo totale e costo variabile variano al variare del livello di produzione. `"
+          show: (params.d == 2)
 
     # explanation:
     #   divs:

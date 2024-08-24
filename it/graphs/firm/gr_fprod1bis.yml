@@ -12,7 +12,7 @@ calcs:
   ap: (calcs.x) / (params.l)
   cazz: (params.alpha) - 1
 
-#aspectRatio: 0.7
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -35,7 +35,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 300]
-                text: "` \\\\text{Output}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: -6
 
 # points
@@ -76,7 +76,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 200]
-                text: "` \\\\text{Output / gg}  `"
+                text: "` \\\\text{kg/gg}  `"
                 xPixelOffset: -6
 
 # points
@@ -101,7 +101,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Funzione di produzione e prodotto medio (Esempio 1)
+      - title: Funzione di produzione e prodotto medio
         sliders:
         - param: alpha
           label: \alpha

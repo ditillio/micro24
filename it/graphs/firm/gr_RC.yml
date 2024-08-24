@@ -35,7 +35,7 @@ calcs:
   avcopt: (calcs.vcopt) / (calcs.xopt)
   atcopt: (calcs.tcopt) / (calcs.xopt)
 
-aspectRatio: 0.8
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -183,13 +183,18 @@ layout:
 
     sidebar:
       controls:
-      - title: Scelta ottima di un'impresa price-taker nel breve periodo
+      - title: Scelta ottima dell'impresa price-taker nel breve periodo
         sliders:
-        - param: fc
-          label: FC
         - param: p
           label: P
         divs:
+        - html: "` `"
+        - html: "` La funzione di produzione è $Q=80\\\\sqrt{L}$. `"
+        - html: "` Il salario è $W=${params.w}$, il costo fisso $FC=${params.fc}$. `"
+        - html: "` Le funzioni di costo variabile e costo totale sono quindi `"
+        - html: "` 
+                    $$VC(Q)=\\\\frac{${params.w}}{80^2}Q^2 \\\\qquad 
+                    C(Q)=${params.fc} + \\\\frac{${params.w}}{80^2}Q^2 $$ `"
         - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
                   unità. Il massimo profitto (lunghezza del segmento blu) è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit > 0)
@@ -203,6 +208,15 @@ layout:
                   Producendo una quantità positiva, invece, l'impresa
                   riesce almeno a coprire una parte (segmento verde) dei costi fissi.`"
           show: (calcs.accprofit < 0)
+        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+                  unità. Il massimo profitto  è zero:  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
+          show: (params.p.toFixed(1) == 2.0)
+        - html: "` L'impresa non può fare di meglio. Per esempio, non producendo affatto i ricavi sarebbero
+                  pari a zero e i costi sarebbero pari al costo fisso, quindi il profitto sarebbe minore:
+                  $$0-${params.fc}=-${params.fc}<${calcs.accprofit.toFixed(2)}$$
+                  Producendo una quantità positiva, invece, l'impresa
+                  riesce almeno a coprire i costi fissi.`"
+          show: (params.p.toFixed(1) == 2.0)
 
     explanation:
       divs:

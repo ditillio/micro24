@@ -71,7 +71,7 @@ calcs:
   mc31: (params.w) * 0.5 / ((calcs.t31)-(calcs.t22))
   mc32: (params.w) * 0.5 / ((calcs.t32)-(calcs.t31))
 
-aspectRatio: 0.6
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -148,7 +148,7 @@ layout:
             strokeWidth: 2
             max: 150
             label:
-              text: "` VC = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` VC(Q) = \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 140
               position: l
               bgcolor: none
@@ -160,7 +160,7 @@ layout:
             color: Brown
             strokeWidth: 2
             label:
-              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
+              text: "` C(Q) = ${params.fc} + \\\\dfrac{ ${params.w} }{80^2} Q^2 `"
               x: 130
               position: l
               bgcolor: none
@@ -251,7 +251,7 @@ layout:
             strokeWidth: 2
             max: 150
             label:
-              text: "` MC = 2\\\\dfrac{ ${params.w} }{80^2} Q `"
+              text: "` MC(Q) = 2\\\\dfrac{ ${params.w} }{80^2} Q `"
               x: 140
               position: l
             bgcolor: none
@@ -284,6 +284,10 @@ layout:
     sidebar:
       controls:
       - title: Dai costi al costo marginale
+        description: Le funzioni di costo totale, costo variabile e costo fisso sono
+                    rappresentate rispettivamente in marrone, arancione e grigio nel grafico di sopra.
+                    La funzione di costo marginale è
+                    rappresentata in rosso nel grafico di sotto.
         # sliders:
         # - param: p
         #   label: P
@@ -299,7 +303,17 @@ layout:
         divs:
         - html: "`  `"
         - html: "`  `"
-          show: (params.d == 0)
+        - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
+        - html: "` Come si vede nel grafico di sotto, 
+                  la funzione di costo marginale è crescente.
+                  Questo è dovuto al fatto che il prodotto marginale del lavoro è decrescente. In effetti,
+                  dire che $MP_L$ è una funzione decrescente di $L$ (più lavoro l'impresa impiega,
+                  minore è l'output aggiuntivo che l'impresa ottiene impiegando una unità di 
+                  lavoro in più) è equivalente a dire che $MC$ è una funzione crescente di $Q$
+                  (più output l'impresa produce, maggiore è la spesa in lavoro necessaria a produrre
+                  una unità di output in più). `"
 
     # explanation:
     #   divs:

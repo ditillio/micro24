@@ -53,7 +53,7 @@ calcs:
   ap2: calcs.ap22
   ap3: calcs.ap32
 
-aspectRatio: 0.6
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -75,7 +75,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 160]
-              text: "` \\\\text{Output}  `"
+              text: "` \\\\text{Output (kg)}  `"
               xPixelOffset: -5
 
 # efficient frontier whole labor units
@@ -140,7 +140,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 120]
-              text: "` \\\\text{Output/gg}  `"
+              text: "` \\\\text{kg/gg}  `"
               xPixelOffset: -5
 
 # AP whole labor units
@@ -192,6 +192,8 @@ layout:
     sidebar:
       controls:
       - title: Funzione di produzione e prodotto medio
+        description: La funzione di produzione è rappresentata in blu nel grafico di sopra.
+                    La funzione di prodotto medio è rappresentata in marrone nel grafico di sotto.
         # sliders:
         # - param: p
         #   label: P

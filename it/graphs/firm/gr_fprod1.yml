@@ -10,7 +10,7 @@ params:
 calcs:
   x: (params.k)*((params.l)^(params.alpha))
 
-#aspectRatio: 0.7
+aspectRatio: 2
 
 layout:
   OneGraphPlusSidebar:
@@ -33,7 +33,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 300]
-                text: "` \\\\text{Output}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: -6
 
 # points
@@ -58,9 +58,10 @@ layout:
 
     sidebar:
       controls:
-      - title: Funzione di produzione (Esempio 1)
+      - title: Funzione di produzione
         description: Muovere i primi due cursori per modificare i parametri della funzione di 
-                    produzione. Muovere il terzo cursore per vedere come,
+                    produzione. Muovere il terzo cursore o trascinare il punto blu nel grafico
+                    per vedere come,
                     dati i parametri scelti, la quantità di output varia al variare
                      della quantità di input.
         sliders:

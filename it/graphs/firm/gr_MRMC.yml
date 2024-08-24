@@ -34,10 +34,10 @@ calcs:
   avcopt: (calcs.vcopt) / (calcs.xopt)
   atcopt: (calcs.tcopt) / (calcs.xopt)
 
-  cazz: min(params.p,calcs.atcopt)
+  zzz: min(params.p,calcs.atcopt)
 
 
-aspectRatio: 0.7
+aspectRatio: 1
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -82,8 +82,8 @@ layout:
             color: Orange
             label:
               text: "` VC = \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
-              x: min((params.a)*sqrt((params.maxcost)/(params.w)),190)
-              position: tl
+              x: 210
+              position: l
             strokeWidth: 1.7
 
 # TC curve
@@ -92,8 +92,8 @@ layout:
             fn: params.w * ((x)/(params.a))^2 + (params.fc)
             color: Brown
             label:
-              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
-              x: min((params.a)*sqrt((params.maxcost-(params.fc))/(params.w)),200)
+              text: "` C = ${params.fc} + \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
+              x: 210
               position: br
             strokeWidth: 1.7
 
@@ -172,7 +172,7 @@ layout:
             label:
               text: "` MR = P `"
               x: 210
-              position: b
+              position: l
             drag:
               - vertical: p
 
@@ -182,9 +182,9 @@ layout:
             fn: params.w * ((x)/(params.a))^2 / (x) + (params.fc) / (x)
             color: Brown
             label:
-              text: ATC
+              text: AC
               x: 210
-              position: l
+              position: bl
               bgcolor: none
             strokeWidth: 1.7
 
@@ -195,7 +195,7 @@ layout:
             color: Orange
             label:
               text: AVC
-              x: 210
+              x: 190
               position: tl
               bgcolor: none
             strokeWidth: 1.7
@@ -237,8 +237,8 @@ layout:
 # profit / loss
         - Area: {fn1: params.p, fn2: calcs.atcopt, fill: Blue, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0 }
         - Area: {fn1: params.p, fn2: calcs.atcopt, fill: Red, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0 }
-        - Area: {fn1: calcs.cazz, fn2: calcs.avcopt, fill: Gray, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0}
-        - Area: {fn1: calcs.cazz, fn2: calcs.avcopt, fill: GreenYellow, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0}
+        - Area: {fn1: calcs.zzz, fn2: calcs.avcopt, fill: Gray, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0}
+        - Area: {fn1: calcs.zzz, fn2: calcs.avcopt, fill: GreenYellow, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0}
 
 # points and labels
         - Point: {coordinates: [calcs.xopt, params.p], color: Green, r: 0, droplines: {horizontal: params.p.toFixed(2)}}
@@ -248,15 +248,15 @@ layout:
 
     sidebar:
       controls:
-      - title: Massimizzazione del profitto
+      - title: Calcolo della scelta ottima dell'impresa price-taker nel breve periodo
         sliders:
         - param: p
           label: P
         divs:
-        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre $Q=${calcs.xopt.toFixed(1)}$
                   unità. Il massimo profitto (lunghezza del segmento blu nel grafico sopra, area blu nel grafico sotto) è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
           show: (calcs.accprofit > 0)
-        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre $Q=${calcs.xopt.toFixed(1)}$
                   unità. Il massimo profitto (negativo della lunghezza del segmento rosso nel grafico di sopra,
                   o negativo dell'area rossa nel grafico di sotto) 
                   è  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
@@ -268,3 +268,12 @@ layout:
                   riesce almeno a coprire una parte (segmento verde nel grafico di sopra, 
                   o area verde nel grafico di sotto) dei costi fissi.`"
           show: (calcs.accprofit < 0)
+        - html: "` Quando il prezzo è $P = ${params.p.toFixed(2)}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+                  unità. Il massimo profitto  è zero:  $$ R - TC = ${calcs.accprofit.toFixed(2)}$$ `"
+          show: (params.p.toFixed(1) == 2.0)
+        - html: "` L'impresa non può fare di meglio. Per esempio, non producendo affatto i ricavi sarebbero
+                  pari a zero e i costi sarebbero pari al costo fisso, quindi il profitto sarebbe minore:
+                  $$0-${params.fc}=-${params.fc}<${calcs.accprofit.toFixed(2)}$$
+                  Producendo una quantità positiva, invece, l'impresa
+                  riesce almeno a coprire i costi fissi.`"
+          show: (params.p.toFixed(1) == 2.0)

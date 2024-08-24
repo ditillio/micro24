@@ -9,7 +9,7 @@ params:
 calcs:
   x: (params.a)*(params.l)
 
-#aspectRatio: 0.7
+aspectRatio: 2
 
 layout:
   OneGraphPlusSidebar:
@@ -32,7 +32,7 @@ layout:
                 position: l
         - Label:
                 coordinates: [0, 600]
-                text: "` \\\\text{Output}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: -6
 
 # points
@@ -57,7 +57,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Funzione di produzione (Esempio 1, caso lineare)
+      - title: Funzione di produzione lineare
         sliders:
         - param: a
           label: A

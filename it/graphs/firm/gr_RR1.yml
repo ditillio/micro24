@@ -22,7 +22,7 @@ calcs:
   tc: params.w * calcs.l + params.fc
   aaa: (params.alpha)^(-1)
 
-aspectRatio: 1
+aspectRatio: 1.4
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -126,7 +126,12 @@ layout:
 
     sidebar:
       controls:
-      - title: Dalla domanda per il prodotto dell'impresa al ricavo totale dell'impresa
+      - title: Domanda per il prodotto e ricavo totale nel caso di un'impresa price-taker
+        description: Spostare la curva di domanda inversa per il prodotto dell'impresa
+                      (retta blu nel grafico di sopra o primo cursore qui sotto) per vedere come varia la funzione
+                      di ricavo totale (grafico di sotto). Spostare il secondo cursore qui sotto (o muovere il punto blu nel grafico
+                      di sopra, o il punto verde nel grafico di sotto) per vedere come, al variare della quantità prodotta <i>Q</i>,
+                      variano il prezzo unitario (grafico di sopra) e il ricavo totale (grafico di sotto).  
         sliders:
         - param: a
           label: P
@@ -135,6 +140,7 @@ layout:
         divs:
         - html: "` `"
         - html: "` `"
-        - html: "` `"
+        - html: "` Quando la curva di domanda inversa per il prodotto dell'impresa è orizzontale,
+                  la curva di ricavo totale è una retta. `"
         - html: "` `"
         - html: "` `"

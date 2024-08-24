@@ -4,12 +4,10 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: x, value: 120, min: 0, max: 200}
-- {name: a, value: 40, min: 30, max: 60, round: 5}
+- {name: a, value: 80, min: 60, max: 100, round: 5}
 - {name: alpha, value: 0.5, min: 0.5, max: 1, round: 0.5}
-- {name: w, value: 36, min: 20, max: 45, round: 1}
-- {name: fc, value: 225, min: 0, max: 500, round: 5}
-- {name: maxcost, value: 2500}
-- {name: maxunitcost, value: 12}
+- {name: w, value: 64, min: 40, max: 80, round: 1}
+- {name: fc, value: 100, min: 0, max: 200, round: 5}
 
 calcs:
   l: ((params.x)/(params.a))^(1/(params.alpha))
@@ -21,7 +19,7 @@ calcs:
   mc: (1/(params.alpha)) * calcs.avc
   aaa: (params.alpha)^(-1)
 
-aspectRatio: 0.75
+aspectRatio: 0.85
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -31,19 +29,19 @@ layout:
         max: 210
         ticks: 0
       yAxis:
-        max: params.maxcost
+        max: 500
         ticks: 0
 
       objects:
 
         - Label:
                 coordinates: [210, 0]
-                text: "` \\\\text{output (kg)}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: 0
 
         - Label:
-                coordinates: [0, params.maxcost]
-                text: "` \\\\text{euro} `"
+                coordinates: [0, 500]
+                text: "` \\\\text{Euro} `"
                 yPixelOffset: 0
                 xPixelOffset: 0
                 position: c
@@ -59,8 +57,8 @@ layout:
             fn: params.w * ( (x) / (params.a) ) ^ 2
             color: Darkorange
             label:
-              text: "` VC = \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
-              x: min((params.a)*sqrt((params.maxcost)/(params.w)),190)
+              text: "` VC(Q) = \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
+              x: 200
               position: tl
             strokeWidth: 1.7
             max: 210
@@ -72,7 +70,7 @@ layout:
             fn: params.w * ( (x) / (params.a) )
             color: Darkorange
             label:
-              text: "` VC = ( ${params.w} / ${params.a} ) Q `"
+              text: "` VC(Q) = ( ${params.w} / ${params.a} ) Q `"
               x: 200
               position: c
             strokeWidth: 1.7
@@ -84,8 +82,8 @@ layout:
             fn: params.w * ( (x) / (params.a) ) ^ 2 + params.fc
             color: Brown
             label:
-              text: "` TC = ${params.fc} + \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
-              x: min((params.a)*sqrt((params.maxcost-(params.fc))/(params.w)),200)
+              text: "` C(Q) = ${params.fc} + \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
+              x: 200
               position: r
               bgcolor: none
             strokeWidth: 1.7
@@ -98,8 +96,8 @@ layout:
             fn: params.w * ( (x) / (params.a) ) ^ 2 + params.fc
             color: brown
             label:
-              text: "` TC = VC = \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
-              x: min((params.a)*sqrt((params.maxcost-(params.fc))/(params.w)),200)
+              text: "` C(Q) = VC(Q) = \\\\dfrac{ ${params.w} }{ ${params.a}^2 } Q^2 `"
+              x: 200
               position: c
             strokeWidth: 1.7
             max: 210
@@ -111,7 +109,7 @@ layout:
             fn: params.w * ( (x) / (params.a) ) + params.fc
             color: Brown
             label:
-              text: "` TC = ${params.fc} + ( ${params.w} / ${params.a} ) Q `"
+              text: "` C(Q) = ${params.fc} + ( ${params.w} / ${params.a} ) Q `"
               x: 200  
               position: c
             strokeWidth: 1.7
@@ -143,19 +141,19 @@ layout:
         max: 210
         ticks: 0
       yAxis:
-        max: params.maxunitcost
+        max: 7
         ticks: 0
 
       objects:
 
         - Label:
                 coordinates: [210, 0]
-                text: "` \\\\text{output (kg)}  `"
+                text: "` \\\\text{Output (kg)}  `"
                 xPixelOffset: 0
 
         - Label:
-                coordinates: [0, params.maxunitcost]
-                text: "` \\\\text{euro / kg} `"
+                coordinates: [0, 7]
+                text: "` \\\\text{Euro / kg} `"
                 yPixelOffset: 0
                 xPixelOffset: 0
                 position: c
@@ -172,8 +170,8 @@ layout:
             fn: 2 * params.w * (x) / ((params.a)^ 2)
             color: Red
             label:
-              text: "` MC = 2 ( ${params.w} / ${params.a}^2 ) Q `"
-              x: min((params.maxunitcost)*((params.a)^2)/(2*(params.w)),200)
+              text: "` MC(Q) = 2 ( ${params.w} / ${params.a}^2 ) Q `"
+              x: 200
               position: b
             strokeWidth: 1.7
             max: 200
@@ -185,7 +183,7 @@ layout:
             fn: params.w * (x) / ((params.a)^ 2)
             color: Darkorange
             label:
-              text: "` AVC = ( ${params.w} / ${params.a}^2 ) Q `"
+              text: "` AVC(Q) = ( ${params.w} / ${params.a}^2 ) Q `"
               x: 200  
               position: c
             strokeWidth: 1.7
@@ -197,9 +195,9 @@ layout:
             fn: params.w / params.a
             color: Darkorange
             label:
-              text: "` AVC = ( ${params.w} / ${params.a} ) `"
+              text: "` AVC(Q) = ( ${params.w} / ${params.a} ) `"
               x: 200  
-              position: t
+              position: l
             strokeWidth: 1.7
             show: params.alpha == 1
 
@@ -209,7 +207,7 @@ layout:
             fn: params.w * (x) / ((params.a)^2) + params.fc / (x)
             color: brown
             label:
-              text: "` ATC = ${params.fc}/Q + ( ${params.w} / ${params.a}^2 ) Q  `"
+              text: "` AC(Q) = ${params.fc}/Q + ( ${params.w} / ${params.a}^2 ) Q  `"
               x: 200  
               position: c
             strokeWidth: 1.7
@@ -221,7 +219,7 @@ layout:
             fn: params.w * (x) / ((params.a)^ 2)
             color: Brown
             label:
-              text: "` ATC = AVC = ( ${params.w} / ${params.a}^2 ) Q `"
+              text: "` AC(Q) = AVC(Q) = ( ${params.w} / ${params.a}^2 ) Q `"
               x: 200  
               position: c
             strokeWidth: 1.7
@@ -233,9 +231,9 @@ layout:
             fn: ( params.w / params.a ) + ( params.fc / (x) )
             color: brown
             label:
-              text: "` ATC = ${params.fc} + ( ${params.w} / ${params.a} ) Q `"
+              text: "` AC(Q) = ${params.fc} + ( ${params.w} / ${params.a} ) Q `"
               x: 200  
-              position: c
+              position: l
             strokeWidth: 1.7
             show: params.alpha == 1
 
@@ -245,7 +243,7 @@ layout:
             fn: params.fc / (x)
             color: Gray
             label:
-              text: AFC
+              text: "` AFC(Q) = ${params.fc} / Q  `"
               x: 200
               position: l
             strokeWidth: 1.7
@@ -273,13 +271,13 @@ layout:
         - html: "` `"
         - html: "` `"
         - html: "` Al livello di produzione $ Q = ${params.x} $ i costi dell'impresa sono
-                  $$ TC = ${calcs.tc.toFixed(2)} $$
-                  $$ VC = ${calcs.vc.toFixed(2)} $$
+                  $$ C(${params.x}) = ${calcs.tc.toFixed(2)} $$
+                  $$ VC(${params.x}) = ${calcs.vc.toFixed(2)} $$
                   $$ FC = ${params.fc.toFixed(2)} $$
                   In termini unitari, i costi sono
-                  $$ ATC = ${calcs.atc.toFixed(2)} $$
-                  $$ AVC = ${calcs.avc.toFixed(2)} $$
-                  $$ AFC = ${calcs.afc.toFixed(2)} $$
-                  $$ MC = ${calcs.mc.toFixed(2)} $$
+                  $$ AC(${params.x}) = ${calcs.atc.toFixed(2)} $$
+                  $$ AVC(${params.x}) = ${calcs.avc.toFixed(2)} $$
+                  $$ AFC(${params.x}) = ${calcs.afc.toFixed(2)} $$
+                  $$ MC(${params.x}) = ${calcs.mc.toFixed(2)} $$
                    `"
           show: params.w > 0

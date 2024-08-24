@@ -40,7 +40,7 @@ calcs:
   dem: (12-params.p)/4
   cs2: ( -(params.p) + 12 ) * (calcs.dem)/2
 
-aspectRatio: 0.6
+aspectRatio: 0.9
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -62,7 +62,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 160]
-              text: "` \\\\text{Output}  `"
+              text: "` \\\\text{Output (kg)}  `"
               xPixelOffset: -5
 
 # efficient frontier whole labor units
@@ -127,7 +127,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 120]
-              text: "` \\\\text{Output/gg}  `"
+              text: "` \\\\text{kg/gg}  `"
               xPixelOffset: -5
 
 # MP whole labor units
@@ -179,6 +179,8 @@ layout:
     sidebar:
       controls:
       - title: Funzione di produzione e prodotto marginale
+        description: La funzione di produzione è rappresentata in blu nel grafico di sopra.
+                    La funzione di prodotto marginale è rappresentata in rosso nel grafico di sotto.
         # sliders:
         # - param: p
         #   label: P
@@ -220,7 +222,7 @@ layout:
           show: (params.d == 1)
         - html: "` Il lavoro è divisibile, cioè l'impresa può impiegare anche frazioni molto piccole di ora. Abbiamo dunque $\\\\Delta L \\\\to 0$
                   e quindi la funzione di prodotto marginale è la derivata della funzione di produzione:
-                  $$ MP_L = \\\\frac{dQ}{dL} = F'(L) = 40L^{-0.5}. $$
+                  $$ MP_L = F'(L) = 40L^{-0.5}. $$
                     `"
           show: (params.d == 2)
         - html: "` Spostare il punto blu o quello rosso per vedere come variano output e prodotto marginale al 
