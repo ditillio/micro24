@@ -179,8 +179,8 @@ layout:
     sidebar:
       controls:
       - title: Production Function and Marginal Product
-        description: The production function is represented in blue in the top graph. The red curve in the bottom graph
-                    is the marginal product function.
+        description: The production function is represented in blue in the top graph. The marginal product function is
+                      represented in red in the bottom graph.
         # sliders:
         # - param: p
         #   label: P
@@ -219,7 +219,7 @@ layout:
                   etc.
                     `"
           show: (params.d == 1)
-        - html: "` Labor is finely divisible, i.e. the firm can hire even small fractions of units of labor,
+        - html: "` Labor is finely divisible, i.e. the firm can hire arbitrarily small fractions of units of labor,
                 that is, $\\\\Delta L \\\\to 0$. Therefore, teh marginal product function is the derivative 
                 of the production function:
                   $$ MP_L = F'(L) = 40L^{-0.5}. $$
