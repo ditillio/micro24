@@ -354,7 +354,7 @@ layout:
         - html: "`  `"
         - html: "`  `"
         - html: "`  `"
-        - html: "` The bottom graph shows that the average fixed cost function is decrescente.
+        - html: "` The bottom graph shows that the average fixed cost function is decreasing.
                   This is quite obvious: the larger the level of production, the smaller the impact of
                   the fixed cost on each unit produced. `"
         - html: "`  `"
