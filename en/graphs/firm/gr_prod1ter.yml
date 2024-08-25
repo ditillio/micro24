@@ -220,7 +220,7 @@ layout:
                     `"
           show: (params.d == 1)
         - html: "` Labor is finely divisible, i.e. the firm can hire arbitrarily small fractions of units of labor,
-                that is, $\\\\Delta L \\\\to 0$. Therefore, teh marginal product function is the derivative 
+                that is, $\\\\Delta L \\\\to 0$. Therefore, the marginal product function is the derivative 
                 of the production function:
                   $$ MP_L = F'(L) = 40L^{-0.5}. $$
                     `"
