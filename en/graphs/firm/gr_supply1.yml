@@ -3,12 +3,13 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: p, value: 3, min: 0.5, max: 4, round: 0.1}
-- {name: fc, value: 100}
-- {name: n, value: 3}
+- {name: a, value: 80, min: 40, max: 100}
+- {name: w, value: 64, min: 40, max: 80}
+- {name: p, value: 2.5, min: 0.5, max: 5, round: 0.01}
+- {name: fc, value: 100, min: 50, max: 200}
 
 calcs:
-  xopt: max( (params.p-0)*50, 0 )
+  xopt: ( params.a * params.a / ( 2 * params.w ) ) * params.p
   tr: params.p * calcs.xopt
   vc: (calcs.xopt)^(2) / 100
   tc: calcs.vc + (params.fc)
@@ -19,17 +20,16 @@ calcs:
   atc: calcs.xopt / 100 + (params.fc) / calcs.xopt
   zzz: max(calcs.mc,calcs.atc)
 
-aspectRatio: 2
+aspectRatio: 1.2
 
 layout:
-  TwoHorizontalGraphsPlusSidebar:
+  OneGraphPlusSidebar:
 
-    leftGraph: 
+    graph: 
       xAxis:
         max: 210
         min: -3
         ticks: 4
-        title: Offerta della singola impresa
       yAxis:
         max: 6
         ticks: 10
@@ -39,13 +39,13 @@ layout:
 
         - Label:
                 coordinates: [210, 0]
-                text: "` \\\\text{output (kg)} `"
+                text: "` \\\\text{Output (kg)} `"
                 yPixelOffset: 0
                 xPixelOffset: -5
                 position: l
         - Label:
                 coordinates: [0, 6]
-                text: "` \\\\text{euro/kg}  `"
+                text: "` \\\\text{Euro/kg}  `"
                 xPixelOffset: 0
 
 # points
@@ -54,101 +54,91 @@ layout:
             color: Red
             r: 5
             droplines:
-              vertical: calcs.xopt
+              vertical: calcs.xopt.toFixed(2)
 
 
 # price line
         - Line:
             yIntercept: params.p
             color: Green
-            strokeWidth: 0.5
+            label:
+              text: P
+              x: 210
+              position: l
+            strokeWidth: 2
+            bgcolor: none
             drag:
               - vertical: p
 
 # individual supply curve
-
         - Curve:
-            fn: max( 0, 50 * (y) - 0 )
-            ind: y
+            fn: ( 2 * params.w / ( params.a * params.a ) ) * (x)
             color: Red
             label:
-              text: S_{SR}
-              y: 27
-              position: bl
-            strokeWidth: 3
+              text: S \; ( = MC)
+              x: 210
+              position: l
+            strokeWidth: 2
 
-# AVC curve
-
+# average variable cost curve
         - Curve:
-            fn: (x) / 100 + 0
+            fn: ( params.w / ( params.a * params.a ) ) * (x)
             color: Orange
-            strokeWidth: 0.5
-
-    rightGraph: 
-      xAxis:
-        max: params.n * 100
-        min: -3
-        ticks: 4
-        title: Offerta di mercato
-      yAxis:
-        max: 30
-        ticks: 10
-      label: a
-
-      objects:
-
-        - Label:
-                coordinates: [params.n * 100, 0]
-                text: "` \\\\text{output (kg)} `"
-                yPixelOffset: 0
-                xPixelOffset: -5
-                position: l
-        - Label:
-                coordinates: [0, 30]
-                text: "` \\\\text{euro/kg}  `"
-                xPixelOffset: 0
-
-# points
-        - Point:
-            coordinates: [(params.n)*(calcs.xopt), params.p]
-            color: Red
-            r: 5
-            droplines:
-              vertical: (params.n)*(calcs.xopt)
-
-
-# price line
-        - Line:
-            yIntercept: params.p
-            color: Green
-            strokeWidth: 0.5
-            drag:
-              - vertical: p
-
-# individual supply curve
-
-        - Curve:
-            fn: max( 0, (params.n) * (4 * (y) - 0) )
-            ind: y
-            color: Red
             label:
-              text: S_{SR}^{\text{\, merc}}
-              y: 27
-              position: bl
-            strokeWidth: 3
+              text: AVC
+              x: 210
+              position: l
+            strokeWidth: 0.7
+            lineStyle: dashed
+
+# average cost curve
+        - Curve:
+            fn: ( params.fc / (x) ) + ( params.w / ( params.a * params.a ) ) * (x)
+            color: Brown
+            label:
+              text: AC
+              x: 20
+              position: l
+            strokeWidth: 0.7
+            min: 0.5
+            lineStyle: dashed
 
     sidebar:
       controls:
-      - title: Offerta individuale e di mercato di breve periodo
+      - title: The Firm's Short-Run Supply Function
         sliders:
         - param: p
           label: P
+        - param: a
+          label: A
+        - param: w
+          label: W
+        - param: fc
+          label: FC
         divs:
-        - html: "` Quando $P = ${params.p}$ la quantità offerta da ciascuna delle ${params.n} imprese nel breve periodo è ${calcs.xopt.toFixed(0)}.
-                    La quantità offerta dal mercato è quindi ${params.n * calcs.xopt.toFixed(0)}.  `"
-          show: (params.p > 0)
+        - html: "` The production function is $Q=A\\\\sqrt{L}=${params.a}\\\\sqrt{L}$, its inverse $L=Q^2/A^2=Q^2/${ params.a * params.a }$.
+                  The firm's total cost function is therefore
+                $C=FC+WQ^2/A^2=${params.fc}+${params.w}Q^2/${ params.a * params.a }$, hence the marginal cost function is
+                 $$MC=2WQ/A^2=${ 2 * params.w } Q / ${ params.a * params.a }$$ `"
+        - html: "` In the short run, the firm maximizes its profit by producing the quantity at which  
+                $MC=P$, namely $ ${ 2 * params.w } Q / ${ params.a * params.a }=P$.
+
+                The firm's short-run supply function is then
+                $$Q=(${ params.a * params.a } / ${ 2 * params.w })P$$ `"
+        - html: "` When $P = ${params.p.toFixed(2)}$, in the short run the firm supplies
+                 $Q=(${ params.a * params.a } / ${ 2 * params.w }) * ${params.p.toFixed(2)} = ${calcs.xopt.toFixed(2)}$ units. `"
+
+
+
+
 
     explanation:
       divs:
-        - html: "`   `"
-          show: params.p !== 100
+        - html: "` An increase in the market price of output, $P$, causes a movement <i>along the supply curve</i>. 
+                  The quantity supplied, i.e. the quantity maximizing the firm's profit, increases. `"
+        - html: "` A technological improvement (an increase in $A$) causes instead a <i>shift of the supply curve</i>
+                  to the right. After the shift, for any given price $P$, the supplied quantity is larger than before.  `"
+        - html: "` An increase in the cost of labor, $W$, causes a shift of the supply curve 
+                  to the left. After the shift, for any given price $P$ the supplied quantity is smaller than before.  `"
+        - html: "` A change in the fixed cost $FC$ causes no change in supply. in the short run, the fixed cost
+                is sunk, so it has no impact on the firm's production decisions. `"

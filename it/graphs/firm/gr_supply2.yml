@@ -179,7 +179,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Offerta individuale e di mercato di breve periodo
+      - title: Offerta di lungo periodo dell'impresa price-taker
         sliders:
         - param: p
           label: P
@@ -190,18 +190,22 @@ layout:
         - param: fc
           label: FC
         divs:
-        - html: "` La funzione di produzione è $Q=A\\\\sqrt{L}=${params.a}\\\\sqrt{L}$, la funzione di produzione 
-                inversa $L=Q^2/A^2=Q^2/${ params.a * params.a }$. La funzione di costo totale è dunque
-                $C=FC+WQ^2/A^2=${params.fc}+${params.w}Q^2/${ params.a * params.a }$, quindi la funzione di costo
-                marginale è $$MC(Q)=2WQ/A^2=${ 2 * params.w } Q / ${ params.a * params.a }$$ `"
-        - html: "` Nel breve periodo l'impresa massimizza il profitto producendo la quantità che risolve l'equazione 
-                $MC(Q)=P$, ovvero $ ${ 2 * params.w } Q / ${ params.a * params.a }=P$.
-
-                La funzione di offerta di breve periodo dell'impresa è quindi
-                $$Q=(${ params.a * params.a } / ${ 2 * params.w })P$$ `"
-        - html: "` Quando $P = ${params.p.toFixed(2)}$, la quantità offerta dall'impresa nel breve periodo è
-                 $Q=(${ params.a * params.a } / ${ 2 * params.w }) * ${params.p.toFixed(2)} = ${calcs.xopt.toFixed(2)}$. `"
-
+        - html: "` La funzione di produzione è $Q=A\\\\sqrt{L}=${params.a}\\\\sqrt{L}$, `"
+        - html: "` la funzione di produzione inversa $L=Q^2/A^2$. `"
+        - html: "` La funzione di costo totale è dunque
+                $C=FC+WQ^2/A^2$, quindi 
+                $$
+                MC(Q)=2WQ/A^2
+                $$
+                $$
+                Q^\\\\text{eff}=A\\\\sqrt{FC/W}
+                $$
+                $$
+                AC^\\\\text{min}=2\\\\sqrt{FC}\\\\sqrt{W} / A
+                $$ `"
+        - html: "` Nel lungo periodo la scelta ottima dell'impresa è produrre la quantità che risolve l'equazione 
+                $MC(Q)=P$ se $P> AC_{\\\\text{min}}$, produrre $Q=0$ se $P< AC_{\\\\text{min}}$, o entrambe le cose
+                se $P= AC_{\\\\text{min}}$. `"
 
 
 
