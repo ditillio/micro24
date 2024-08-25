@@ -192,8 +192,8 @@ layout:
     sidebar:
       controls:
       - title: Production Function and Average Product
-        description: The production function is represented in blue in the top graph. The brown curve in the bottom graph
-                    is the average product function.
+        description: The production function is represented in blue in the top graph. The average product function is
+                      represented in brown in the bottom graph.
         # sliders:
         # - param: p
         #   label: P
@@ -232,7 +232,7 @@ layout:
                   etc.
                     `"
           show: (params.d == 1)
-        - html: "` Labor is finely divisible, i.e. the firm can hire even small fractions of units of labor. 
+        - html: "` Labor is finely divisible, i.e. the firm can hire arbitrarily small fractions of units of labor. 
                     Average product is a continuous curve. `"
           show: (params.d == 2)
         - html: "` Drag the blue point or the brown point to see how output and average product vary, as the quantity of 
