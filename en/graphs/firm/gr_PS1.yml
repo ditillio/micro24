@@ -179,7 +179,7 @@ layout:
 
     explanation:
       divs:
-        - html: "` When the output market price is $P=${params.p.toFixed(2)}$ and teh firm produces
+        - html: "` When the output market price is $P=${params.p.toFixed(2)}$ and the firm produces
                      $Q=${params.x}$ units, revenue is $R=${calcs.tr.toFixed(2)}$ (green-bordered rectangle). `"
         - html: "` The avoidable cost (area below the supply curve), which in the short run is the variable cost,
                   is $VC=${calcs.vc.toFixed(2)}$.  `"
