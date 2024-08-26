@@ -213,7 +213,7 @@ layout:
         - html: "` In the long run the fixed cost is an avoidable cost, hence it must be taken into account
                   in determining the firm's optimal choice. The firm's long-run optimal choice is the same as
                   its short-run optimal choice only if we are in Case 2. That is, only if the fixed cost is
-                  sufficiently small relative to the market price of the firm's output, so that $R(Q)\\\\geq TC(Q)$
+                  sufficiently small relative to the market price of the firm's output, so that $R(Q)> TC(Q)$
                   for at least some positive values of $Q$.`"
           show: params.p > 0
 

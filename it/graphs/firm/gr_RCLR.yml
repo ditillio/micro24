@@ -217,8 +217,7 @@ layout:
                   ottima dell'impresa. La scelta ottima di lungo periodo è 
                   uguale a quella di breve periodo solo se siamo nel Caso 2, ovvero solo se il costo fisso è
                   sufficientemente basso (relativamente al prezzo di vendita 
-                  dell'output), in modo che $R(Q)\\\\geq TC(Q)$ per almeno
-                  un valore di $Q$.`"
+                  dell'output), in modo che $R(Q)> TC(Q)$ per almeno qualche valore di $Q$.`"
           show: params.p > 0
 
 
