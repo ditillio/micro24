@@ -157,8 +157,8 @@ layout:
       controls:
       - title: Revenue and inverse demand for a non-price-taking firm
         description: Move the inverse demand function 
-                      (blu curve in the top graph, or first slider here below) to see how the revenue function
-                      changes (bottom graph). Move the second slider below (or drag the blue point in the
+                      (blu curve in the top graph) to see how the revenue function
+                      changes (bottom graph). Move the slider below (or drag the blue point in the
                       top graph, or the green point in the bottom graph) to see how unit price (top graph)
                       and revenue (bottom graph) vary, as the quantity <i>Q</i> varies.  
         sliders:
