@@ -279,7 +279,7 @@ layout:
                   e va quindi tenuto in considerazione per determinare la scelta
                   ottima dell'impresa. La scelta ottima di lungo periodo è 
                   uguale a quella di breve periodo solo se il prezzo di vendita
-                  dell'output è sufficientemente alto (almeno pari al 
+                  dell'output è sufficientemente alto (maggiore del 
                   minimo costo medio). `"
           show: params.p > 0
 

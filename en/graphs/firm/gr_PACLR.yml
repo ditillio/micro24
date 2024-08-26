@@ -273,10 +273,10 @@ layout:
 
     explanation:
       divs:
-        - html: "` In the long run the fixed cost is an avoidable cost, hence it must be taken into account
+        - html: "` In the long run, the fixed cost is an avoidable cost, hence it must be taken into account
                   in determining the firm's optimal choice. Only in Case 2 is the firm's long-run optimal choice 
                   the same as its short-run optimal choice. That is, only if the market price of output
-                  is sufficiently high (at least equal to minimum average cost). `"
+                  is sufficiently high (larger than minimum average cost). `"
           show: params.p > 0
 
 
