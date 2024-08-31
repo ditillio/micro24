@@ -376,14 +376,14 @@ layout:
         - html: "`  `"
         - html: "`  `"
         - html: "`  `"
-        - html: "` Infine, la funzione di costo medio ha la forma di una U, è cioè prima decrescente
+        - html: "` Infine, la funzione di costo medio ha la forma di una U: è cioè prima decrescente
                 e poi crescente in $Q$. 
                 Per spiegare questo, ricordiamo che il costo medio è 
                 la somma di costo fisso medio e costo variabile medio. 
                   Per bassi livelli di output, il costo fisso medio decresce più velocemente
                   di quanto cresca il costo variabile medio 
                   (nell'esempio di questa figura, il costo variabile medio cresce 
-                  ad una velocità costante, essendo una linea retta), quind il costo medio 
+                  ad una velocità costante, essendo una linea retta), quindi il costo medio 
                   diminuisce all'aumentare della quantità prodotta. 
                   Per alti livelli di output, il costo fisso medio decresce invece più lentamente,
                    quindi il costo medio aumenta

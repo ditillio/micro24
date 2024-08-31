@@ -138,7 +138,7 @@ layout:
                 di offerta. La quantità offerta, cioè la quantità che massimizza il profitto dell'impresa, aumenta. `"
         - html: "` Un miglioramento della produttività (un aumento di $A$) provoca uno spostamento <i>della 
                   curva</i> di offerta verso destra. Per ogni dato prezzo $P$, la quantità offerta è maggiore.  `"
-        - html: "` Un aumento del costo del lavoro (un aumento di $W$) provoca uno spostamento della 
-                  curva di offerta verso sinistra. Per ogni dato prezzo $P$, la quantità offerta è minore.  `"
+        - html: "` Un aumento del costo del lavoro (un aumento di $W$) provoca uno spostamento <i>della 
+                  curva</i> di offerta verso sinistra. Per ogni dato prezzo $P$, la quantità offerta è minore.  `"
         - html: "` Al variare del costo fisso $FC$, la curva di offerta non si sposta. Nel breve periodo, il costo fisso
                 è irrecuperabile, quindi non incide sulle decisioni di produzione dell'impresa. `"

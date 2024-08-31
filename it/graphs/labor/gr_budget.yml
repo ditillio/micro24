@@ -2,16 +2,11 @@
 schema: EconSchema
 version: 1
 params:
-- name: a
-  value: '0.5'
-  min: '0.01'
-  max: '0.99'
-  round: '0.01'
 - name: w
   value: '10'
   min: '5'
   max: '15'
-  round: '0.01'
+  round: '0.05'
 - name: M
   value: '50'
   min: '0'
@@ -25,9 +20,7 @@ params:
   value: 1
   max: 1.5
   min: 0.5
-  round: 0.01
-- name: showBuySell
-  value: true
+  round: 0.05
 calcs:
   wealth: 14*params.w + params.M
   consumptionEndowment: params.M / params.p
