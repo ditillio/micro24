@@ -214,6 +214,22 @@ layout:
             xPixelOffset: -5
 
 
+# price line
+      - Line:
+          yIntercept: params.w
+          color: Green
+          label:
+            text: W
+            x: 15
+            position: bl
+          strokeWidth: 2
+          bgcolor: none
+          drag:
+            - vertical: w
+
+
+
+
 # leisure demand function
       - Curve:
           fn: calcs.rN * params.M / ( (x) - 14*calcs.rN )
