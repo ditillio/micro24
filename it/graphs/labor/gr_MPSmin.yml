@@ -303,7 +303,7 @@ layout:
     sidebar:
       controls:
 
-      - title: Monopsonio nel mercato del lavoro
+      - title: Salario minimo in un mercato del lavoro monopsonistico
 #        description: The budget line for a worker who can choose how many hours to work at a constant wage
         sliders:
         - param: minwage
