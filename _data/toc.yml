@@ -50,14 +50,14 @@ parts:
           - title:
               en: Monopsony in Labor Markets
               it: Monopsonio nel mercato del lavoro
-  #     - folder: S
-  #       title:
-  #         en: Savings Decisions
-  #         it: Scelte di risparmio
-  #       sections:
-  #         - title:
-  #             en: Interest Rate and Present Value
-  #             it: Tasso d'interesse e valore attuale
-  #         - title:
-  #             en: Saving and Borrowing
-  #             it: Risparmio e indebitamento
+      - folder: S
+        title:
+          en: Saving Decisions
+          it: Scelte di risparmio
+        sections:
+          - title:
+              en: Interest Rate and Present Value
+              it: Tasso d'interesse e valore attuale
+          - title:
+              en: Saving and Borrowing
+              it: Risparmio e indebitamento
