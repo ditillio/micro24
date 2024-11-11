@@ -163,7 +163,7 @@ layout:
             text: W_0
             x: 7000
             position: l
-          strokeWidth: 2
+          strokeWidth: 1
           bgcolor: none
           drag:
             - vertical: minwage
