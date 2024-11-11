@@ -222,6 +222,8 @@ layout:
             position: l
           strokeWidth: 1
           bgcolor: none
+          drag:
+            - vertical: minwage
       - Point:
           coordinates: [0, params.minwage]
           droplines:
