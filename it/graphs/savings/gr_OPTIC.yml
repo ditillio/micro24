@@ -212,7 +212,7 @@ layout:
         - html: "` La scelta ottima, ottenuta risolvendo il sistema di equazioni dato dal vincolo di
                 bilancio e dalla condizione di tangenza
                 $$
-                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} + \\\\dfrac{(1+R)P_0}{P_1} C_0
+                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} - \\\\dfrac{(1+R)P_0}{P_1} C_0
                 \\\\qquad \\\\qquad
                 \\\\frac{2C_1}{C_0} = \\\\dfrac{(1+R)P_0}{P_1}
                 $$
@@ -222,7 +222,7 @@ layout:
         - html: "` La scelta ottima, ottenuta risolvendo il sistema di equazioni dato dal vincolo di
                 bilancio e dalla condizione di tangenza
                 $$
-                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} + \\\\dfrac{(1+R)P_0}{P_1} C_0
+                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} - \\\\dfrac{(1+R)P_0}{P_1} C_0
                 \\\\qquad \\\\qquad
                 \\\\frac{C_1}{2C_0} = \\\\dfrac{(1+R)P_0}{P_1}
                 $$
@@ -232,7 +232,7 @@ layout:
         - html: "` La scelta ottima, ottenuta risolvendo il sistema di equazioni dato dal vincolo di
                 bilancio e dalla condizione di tangenza
                 $$
-                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} + \\\\dfrac{(1+R)P_0}{P_1} C_0
+                C_1 = \\\\dfrac{(1+R)M_0+M_1}{P_1} - \\\\dfrac{(1+R)P_0}{P_1} C_0
                 \\\\qquad \\\\qquad
                 \\\\frac{C_1}{C_0} = \\\\dfrac{(1+R)P_0}{P_1}
                 $$
@@ -241,7 +241,7 @@ layout:
 
         - html: "` ovvero
                 $$
-                C_1 = ${calcs.FV.toFixed(2)} + ${calcs.IBCslope.toFixed(2)} C_0
+                C_1 = ${calcs.FV.toFixed(2)} - ${calcs.IBCslope.toFixed(2)} C_0
                 \\\\qquad \\\\qquad
                 C_1 = ${calcs.zzz.toFixed(2)} C_0
                 $$
