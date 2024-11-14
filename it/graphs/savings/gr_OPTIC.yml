@@ -241,7 +241,7 @@ layout:
 
         - html: "` ovvero
                 $$
-                C_1 = ${calcs.FV.toFixed(2)} - ${calcs.IBCslope.toFixed(2)} C_0
+                C_1 = ${calcs.maxC1.toFixed(2)} - ${calcs.IBCslope.toFixed(2)} C_0
                 \\\\qquad \\\\qquad
                 C_1 = ${calcs.zzz.toFixed(2)} C_0
                 $$
